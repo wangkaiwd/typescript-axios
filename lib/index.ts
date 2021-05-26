@@ -5,7 +5,7 @@ const obj = {
 };
 
 function run() {
-  return obj
+  return obj;
 }
 
 run();
