@@ -4,11 +4,16 @@
   "description": "http request library",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pre-commit": "lint-staged"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wangkaiwd/typescript-axios.git"
+  },
+  "lint-staged": {
+    "**/*.{ts,json,js}": [
+      "prettier --write"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -18,6 +23,7 @@
   },
   "homepage": "https://github.com/wangkaiwd/typescript-axios#readme",
   "dependencies": {
+    "husky": "^6.0.0",
     "typescript": "^4.2.4"
   },
   "devDependencies": {
@@ -27,6 +33,7 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.3",
+    "lint-staged": "^11.0.0",
     "prettier": "2.3.0"
   }
 }
