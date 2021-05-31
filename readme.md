@@ -1,4 +1,5 @@
 ## 搭建项目
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 ### 代码规范
 
@@ -27,6 +28,12 @@ npx tsc --init
 
 * `vue`
 * `element-plus`
+
+用到的第三方库：
+* [`cz-cli`](https://github.com/commitizen/cz-cli)
+* [`commitlint`](https://github.com/conventional-changelog/commitlint)
+* [`conventional-changelog`](https://github.com/conventional-changelog/conventional-changelog)
+  * [`usage`](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog)
 
 ### 代码质量
 

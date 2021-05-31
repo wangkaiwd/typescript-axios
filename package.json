@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "pre-commit": "lint-staged",
-    "cm": "cz"
+    "cm": "cz",
+    "genlog": "node scripts/gen-change-log.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
     "@typescript-eslint/parser": "^4.25.0",
     "chalk": "^4.1.1",
     "commitizen": "^4.2.4",
+    "conventional-changelog": "^3.1.24",
     "cz-conventional-changelog": "^3.2.0",
     "eslint": "^7.27.0",
     "eslint-config-airbnb-base": "^14.2.1",
