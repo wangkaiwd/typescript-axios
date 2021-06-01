@@ -38,6 +38,27 @@ npx tsc --init
 
 * 测试页面：`vite` + `typescript` + `ant design vue`
 
+问题：配置已初步完成，但是步骤过于繁琐，且没有找到如何为`vue3`项目指定`tsconfig`的方法
+
+结论：决定采用在`website`下再建一个`vue`+`vite`的项目来生成`demo`
+####  配置`Vue3`+`Webpack`开发环境
+```bash
+# webpack
+npm i webpack webpack-cli webpack-dev-server -D
+# babel
+npm i @babel/core @babel/preset-env @babel/preset-typescript -D
+
+# vue vue-router vue-loader
+npm i vue@next vue-loader@next @vue/compiler-sfc
+
+# eslint
+npm i eslint-plugin-vue
+
+# css
+npm i less less-loader css-loader style-loader
+```
+
+* [`eslint-plugin-vue`](https://eslint.vuejs.org/user-guide/#installation)
 
 ### 代码质量
 
