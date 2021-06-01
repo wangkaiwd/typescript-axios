@@ -15,8 +15,6 @@
 
 * webstorm
 
-
-
 ### 初始化`tsconfig`
 
 ```shell
@@ -34,6 +32,12 @@ npx tsc --init
 * [`commitlint`](https://github.com/conventional-changelog/commitlint)
 * [`conventional-changelog`](https://github.com/conventional-changelog/conventional-changelog)
   * [`usage`](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog)
+  
+### 高效开发
+在测试页面中使用`axios`，模拟真实使用场景
+
+* 测试页面：`vite` + `typescript` + `ant design vue`
+
 
 ### 代码质量
 
