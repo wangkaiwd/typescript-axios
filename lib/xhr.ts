@@ -1,4 +1,4 @@
-import { AxiosConfig } from "./types/index";
+import { AxiosConfig } from "./types";
 
 export function xhr(config: AxiosConfig) {
   const { data = null, method, url } = config;
