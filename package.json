@@ -6,7 +6,8 @@
   "scripts": {
     "pre-commit": "lint-staged",
     "cm": "cz",
-    "genlog": "node scripts/gen-change-log.js"
+    "genlog": "node scripts/gen-change-log.js",
+    "server": "node website/server.js"
   },
   "repository": {
     "type": "git",
@@ -41,8 +42,14 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.3",
+    "express": "^4.17.1",
     "lint-staged": "^11.0.0",
-    "prettier": "2.3.0"
+    "prettier": "2.3.0",
+    "ts-loader": "^9.2.3",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-middleware": "^3.7.3",
+    "webpack-dev-server": "^3.11.2"
   },
   "config": {
     "commitizen": {

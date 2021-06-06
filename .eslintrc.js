@@ -10,5 +10,8 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["@typescript-eslint"],
-  rules: {},
+  rules: {
+    "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
+    "no-param-reassign": ["error", { props: false }],
+  },
 };
