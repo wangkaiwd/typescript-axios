@@ -9,7 +9,7 @@ const compiler = webpack(config);
 
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js
 // configuration file as a base.
-app.use(webpackDevMiddleware(compiler, { writeToDisk: true }));
+app.use(webpackDevMiddleware(compiler));
 app.use(express.static(__dirname));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
