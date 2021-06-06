@@ -1,12 +1,8 @@
-const a = 1;
-const obj = {
-  a,
-  b: 1,
-  c: 2,
-};
+import { AxiosConfig } from "./types/index";
+import { xhr } from "./xhr";
 
-function run() {
-  return obj;
+function axios(config: AxiosConfig): void {
+  xhr(config);
 }
 
-run();
+export default axios;

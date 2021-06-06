@@ -20,6 +20,8 @@
     "forceConsistentCasingInFileNames": true,
     /* Disallow inconsistently-cased references to the same file. */
     "declaration": true,
-    "outDir": "build"
-  }
+    "outDir": "build",
+    "moduleResolution": "Node"
+  },
+  "include": ["lib/**/*.ts"]
 }

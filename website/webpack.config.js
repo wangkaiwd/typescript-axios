@@ -21,6 +21,9 @@ module.exports = {
   cache: {
     type: "filesystem",
   },
+  resolve: {
+    extensions: [".js", ".ts", ".json"],
+  },
   module: {
     rules: [
       {
