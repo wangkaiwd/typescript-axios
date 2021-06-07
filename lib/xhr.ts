@@ -1,11 +1,18 @@
 import { AxiosConfig } from "./types";
 
 export function xhr(config: AxiosConfig) {
-  const { data = null, method, url } = config;
-  const request = new XMLHttpRequest();
-  request.open(method, url, true);
-  request.addEventListener("load", (e) => {
-    console.log(e);
+  return new Promise((resolve, reject) => {
+    const { data = null, method, url } = config;
+    const request = new XMLHttpRequest();
+    request.open(method, url, true);
+    request.send(data);
+    request.addEventListener("load", () => {
+      if (request.status >= 200 && request.status < 300) {
+        resolve(request.response);
+      }
+    });
+    request.addEventListener("error", (e) => {
+      reject(e);
+    });
   });
-  request.send(data);
 }
