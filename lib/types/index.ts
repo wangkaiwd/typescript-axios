@@ -18,3 +18,10 @@ export interface AxiosConfig {
   data?: any;
   params?: any;
 }
+
+export interface AxiosResponse {
+  status: number;
+  statusText: string;
+  data: any;
+  request: XMLHttpRequest;
+}

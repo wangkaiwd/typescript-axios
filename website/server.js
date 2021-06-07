@@ -19,6 +19,12 @@ app.get("/simple/get", (req, res) => {
     msg: "Hello World!",
   });
 });
+
+app.get("/base/get", (req, res) => {
+  console.log(req.query);
+  res.json(req.query);
+});
+
 // Serve the files on port 3000.
 app.listen(3000, () => {
   console.log("Example app listening on port 3000!\n");

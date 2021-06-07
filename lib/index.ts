@@ -1,10 +1,8 @@
-import { AxiosConfig } from "./types";
+import { AxiosConfig, AxiosResponse } from "./types";
 import { xhr } from "./xhr";
 
-function axios(config: AxiosConfig): void {
-  xhr(config).then((res) => {
-    console.log("res", res);
-  });
+function axios(config: AxiosConfig): Promise<AxiosResponse> {
+  return xhr(config);
 }
 
 export default axios;
