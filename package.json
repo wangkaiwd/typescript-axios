@@ -15,7 +15,8 @@
   },
   "lint-staged": {
     "**/*.{ts,json,js}": [
-      "prettier --write"
+      "prettier --write",
+      "eslint"
     ]
   },
   "keywords": [],
