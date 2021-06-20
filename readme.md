@@ -53,6 +53,8 @@ npx tsc --init
 ### 发布
 
 * [getting error 402 while publishing package using npm](https://stackoverflow.com/q/41981686)
+* tag
+* version
 
 ### 参考
 

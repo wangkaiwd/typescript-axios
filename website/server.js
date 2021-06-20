@@ -2,6 +2,7 @@ const express = require("express");
 const webpack = require("webpack");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 
+const PORT = 3000;
 const app = express();
 const config = require("./webpack.config");
 
@@ -21,17 +22,16 @@ app.get("/simple/get", (req, res) => {
 });
 
 app.get("/base/get", (req, res) => {
-  console.log(req.query);
   res.json(req.query);
 });
 
-app.get("/base/post",(req,res) => {
+app.get("/base/post", (req, res) => {
   res.json({
-    msg: 'post response'
-  })
-})
+    msg: "post response",
+  });
+});
 
 // Serve the files on port 3000.
-app.listen(3000, () => {
-  console.log("Example app listening on port 3000!\n");
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}!\n`);
 });

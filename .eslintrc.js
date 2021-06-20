@@ -11,7 +11,7 @@ module.exports = {
   },
   plugins: ["@typescript-eslint"],
   rules: {
-    "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
+    "import/no-extraneous-dependencies": 0,
     "no-param-reassign": 0,
     "import/extensions": [
       "error",
@@ -24,7 +24,9 @@ module.exports = {
         tsx: "never",
       },
     ],
-    "import/prefer-default-export": "off",
+    "import/prefer-default-export": 0,
+    "prefer-destructuring": 0,
+    "no-shadow": 0,
   },
   settings: {
     "import/extensions": [".js", ".jsx", ".ts", ".tsx"],

@@ -1,5 +1,5 @@
 import { AxiosConfig, AxiosResponse } from "./types";
-import buildUrl from "./utils/buildUrl";
+import buildUrl from "./helpers/url";
 import { xhr } from "./xhr";
 
 function axios(config: AxiosConfig): Promise<AxiosResponse> {
