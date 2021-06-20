@@ -32,5 +32,21 @@
 
 * 如何参与开发？
 
-### 参考
-* [typescript-starter](https://github.com/bitjson/typescript-starter)
+###  配置`Vue3`+`Webpack`开发环境
+```bash
+# webpack
+npm i webpack webpack-cli webpack-dev-server -D
+# babel
+npm i @babel/core @babel/preset-env @babel/preset-typescript -D
+
+# vue vue-router vue-loader
+npm i vue@next vue-loader@next @vue/compiler-sfc
+
+# eslint
+npm i eslint-plugin-vue
+
+# css
+npm i less less-loader css-loader style-loader
+```
+
+* [`eslint-plugin-vue`](https://eslint.vuejs.org/user-guide/#installation)
