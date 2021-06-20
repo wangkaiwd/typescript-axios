@@ -1,3 +1,5 @@
 scripts/**
 dist
+build
 package.json
+package-lock.json
