@@ -32,7 +32,14 @@ function handleHashAndQuestionMark(url: string): string {
   return url;
 }
 
-function joinParams(params: object) {
+/**
+ * special handle:
+ *  1. array
+ *  2. Date
+ *  3. plainObject
+ * @param params request params object
+ */
+function joinParams(params: object): string {
   const parts: string[] = [];
   Object.entries(params).forEach(([key, val]) => {
     let values: any[]; // tricks: make all conditions to an array to unified handle
