@@ -17,7 +17,7 @@ function encode(url: string): string {
 
 /**
  * 1. delete hash part of url
- * 2. populate question mark for url
+ * 2. populate question mark or ampersand for url
  * @param url request url
  */
 function handleHashAndQuestionMark(url: string): string {
@@ -28,6 +28,8 @@ function handleHashAndQuestionMark(url: string): string {
   }
   if (questionMarkIndex === -1) {
     url += "?";
+  } else {
+    url += "&";
   }
   return url;
 }
