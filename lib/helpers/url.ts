@@ -15,26 +15,21 @@ function encode(url: string): string {
     .replace(/%20/gi, "+");
 }
 
-interface IResult {
-  url: string;
-  hash: string;
-}
-
-function handleHashAndQuestionMark(url: string): IResult {
+/**
+ * 1. delete hash part of url
+ * 2. populate question mark for url
+ * @param url request url
+ */
+function handleHashAndQuestionMark(url: string): string {
   const hashIndex = url.indexOf("#");
   const questionMarkIndex = url.indexOf("?");
-  let hash = "";
   if (hashIndex !== -1) {
-    hash = url.slice(hashIndex);
     url = url.slice(0, hashIndex);
   }
   if (questionMarkIndex === -1) {
     url += "?";
   }
-  return {
-    url,
-    hash,
-  };
+  return url;
 }
 
 function joinParams(params: object) {
@@ -64,8 +59,8 @@ function buildUrl(url: string, params?: object): string {
     return url;
   }
 
-  const { url: newUrl, hash } = handleHashAndQuestionMark(url);
-  return newUrl + joinParams(params) + hash;
+  url = handleHashAndQuestionMark(url);
+  return url + joinParams(params);
 }
 
 export default buildUrl;
