@@ -18,6 +18,7 @@ module.exports = {
     filename: "[name].js",
     clean: true,
   },
+  devtool: "source-map",
   cache: {
     type: "filesystem",
   },

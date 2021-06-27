@@ -42,6 +42,9 @@ npx tsc --init
 
 目前的开发环境配置[在这里](https://github.com/wangkaiwd/typescript-axios/blob/master/website/readme.md)
 
+### 如何断点调试？
+* 使用编辑器断点调试源代码
+
 ### 代码质量
 
 * jest
