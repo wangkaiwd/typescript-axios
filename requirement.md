@@ -4,12 +4,16 @@
 
 ### `params`: 将参数拼接到`url`中
 
-> 为什么要这样处理，有什么规范可以参考吗？
+### 为什么要这样处理?
 
 * 数组
 * 对象
 * Date
 * 特殊字符
+  * [encodeURIComponent](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
+  * [When are you supposed to use escape instead of encodeURI/encodeURIComponent](https://stackoverflow.com/questions/75980/when-are-you-supposed-to-use-escape-instead-of-encodeuri-encodeuricomponent)
+
+有什么规范可以参考吗？
 
 ### 处理返回
 
