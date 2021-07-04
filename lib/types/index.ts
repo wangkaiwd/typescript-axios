@@ -12,12 +12,14 @@ export type Methods =
   | "patch"
   | "PATCH";
 
+export type IHeaders = Record<string, string>;
+
 export interface AxiosConfig {
   url: string;
   method: Methods;
   data?: any;
   params?: object;
-  headers?: object;
+  headers?: IHeaders;
 }
 
 export interface AxiosResponse {

@@ -1,4 +1,5 @@
 import { isPlainObject } from "../utils";
+import { IHeaders } from "../types";
 
 function normalizeHeadersName(headers: any) {
   if (!headers) {
@@ -12,7 +13,7 @@ function normalizeHeadersName(headers: any) {
   });
 }
 
-export function processHeaders(headers: any, data: any) {
+export function processHeaders(headers: any, data: any): IHeaders | undefined {
   normalizeHeadersName(headers);
   if (isPlainObject(data)) {
     // headers default is empty object ?
@@ -20,4 +21,5 @@ export function processHeaders(headers: any, data: any) {
       headers["Content-Type"] = "application/json";
     }
   }
+  return headers;
 }
