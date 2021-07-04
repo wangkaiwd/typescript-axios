@@ -1,10 +1,12 @@
+import { transformRequest } from "./helpers/data";
 import { AxiosConfig, AxiosResponse } from "./types";
 import buildUrl from "./helpers/url";
 import { xhr } from "./xhr";
 
 function processConfig(config: AxiosConfig): void {
-  const { url, params = {} } = config;
+  const { url, params, data } = config;
   config.url = buildUrl(url, params);
+  config.data = transformRequest(data);
 }
 
 function axios(config: AxiosConfig): Promise<AxiosResponse> {

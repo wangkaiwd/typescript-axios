@@ -7,7 +7,7 @@
     "pre-commit": "lint-staged",
     "cm": "cz",
     "genlog": "node scripts/gen-change-log.js",
-    "server": "node website/server.js",
+    "server": "nodemon website/server.js",
     "build": "tsc -p tsconfig.json"
   },
   "repository": {
@@ -52,6 +52,7 @@
     "eslint-plugin-import": "^2.23.3",
     "express": "^4.17.1",
     "lint-staged": "^11.0.0",
+    "nodemon": "^2.0.9",
     "prettier": "2.3.0",
     "ts-loader": "^9.2.3",
     "webpack": "^5.38.1",

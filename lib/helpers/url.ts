@@ -52,6 +52,9 @@ function joinParams(params: object): string {
       values = [val];
     }
     values.forEach((val) => {
+      if (!val) {
+        return;
+      }
       if (isPlainObject(val)) {
         val = JSON.stringify(val);
       } else if (val instanceof Date) {
@@ -67,9 +70,11 @@ function buildUrl(url: string, params?: object): string {
   if (!params) {
     return url;
   }
-
-  url = handleHashAndQuestionMark(url);
-  return url + joinParams(params);
+  const queryString = joinParams(params);
+  if (!queryString) {
+    return url;
+  }
+  return handleHashAndQuestionMark(url) + queryString;
 }
 
 export default buildUrl;

@@ -15,21 +15,38 @@ app.use(express.static(__dirname));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/simple/get", (req, res) => {
-  res.json({
-    msg: "Hello World!",
+function registerSimpleRoute() {
+  app.get("/simple/get", (req, res) => {
+    res.json({
+      msg: "Hello World!",
+    });
   });
-});
+}
 
-app.get("/base/get", (req, res) => {
-  res.json(req.query);
-});
-
-app.get("/base/post", (req, res) => {
-  res.json({
-    msg: "post response",
+function registerBaseRoute() {
+  app.get("/base/get", (req, res) => {
+    res.json(req.query);
   });
-});
+
+  app.post("/base/post", (req, res) => {
+    res.json(req.body);
+  });
+  app.post("/base/buffer", (req, res) => {
+    const message = [];
+    req.on("data", (chunk) => {
+      message.push(chunk);
+    });
+    req.on("end", () => {
+      const buffer = Buffer.concat(message);
+      // buffer.toString
+      // buffer.toJSON
+      res.json(buffer.toJSON());
+    });
+  });
+}
+
+registerSimpleRoute();
+registerBaseRoute();
 
 // Serve the files on port 3000.
 app.listen(PORT, () => {

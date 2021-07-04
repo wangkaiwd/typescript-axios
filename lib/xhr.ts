@@ -1,4 +1,5 @@
 import { AxiosConfig, AxiosResponse } from "./types";
+import { isPlainObject } from "./utils";
 
 export function xhr(config: AxiosConfig): Promise<AxiosResponse> {
   return new Promise((resolve, reject) => {
@@ -6,6 +7,17 @@ export function xhr(config: AxiosConfig): Promise<AxiosResponse> {
     const request = new XMLHttpRequest();
     const normalizedMethod = method.toUpperCase();
     request.open(normalizedMethod, url, true);
+    try {
+      const json = JSON.parse(data);
+      if (isPlainObject(json)) {
+        request.setRequestHeader(
+          "Content-Type",
+          "application/json; charset=utf8"
+        );
+      }
+    } catch (e) {
+      console.log(e);
+    }
     request.send(data);
     request.addEventListener("load", () => {
       if (request.status >= 200 && request.status < 300) {
