@@ -15,6 +15,10 @@
 
 有什么规范可以参考吗？
 
+#### 问题
+
+* `params: {a:{x:1}}`属性值依旧是对象的情况处理和想象的不一样？
+
 ### `data`: 将参数添加到请求体中
 
 #### 自己的思路
@@ -29,8 +33,6 @@
 如果是普通对象，转换为`JSON`字符串，其它类型的内容，直接交给服务端处理？
 
 #### 库的思路
-
-* [`XMLHttpRequest.send()`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send#parameters)
 
 `send`方法传入的请求体的类型如下：
 
@@ -48,7 +50,21 @@
 
 如果传入的参数可以被`JSON.parse`进行解析，`axios`会默认设置`application/json`请求头
 
+参考资料：
+
+* [post](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST)
+* [`XMLHttpRequest.send()`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send#parameters)
+
+### 处理请求头
+
+> 由`send`方法中的参数解析引发的问题
+
+* 支持配置请求头
+
 ### 处理返回
 
 * 错误信息
 * 请求成功后返回给用户的数据格式
+
+
+### 整体思路

@@ -17,6 +17,7 @@ export interface AxiosConfig {
   method: Methods;
   data?: any;
   params?: object;
+  headers?: object;
 }
 
 export interface AxiosResponse {
