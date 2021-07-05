@@ -2,10 +2,13 @@ import { AxiosConfig, AxiosResponse } from "./types";
 
 export function xhr(config: AxiosConfig): Promise<AxiosResponse> {
   return new Promise((resolve, reject) => {
-    const { data = null, method, url } = config;
+    const { data = null, method, url, headers = {} } = config;
     const request = new XMLHttpRequest();
     const normalizedMethod = method.toUpperCase();
     request.open(normalizedMethod, url, true);
+    Object.keys(headers).forEach((name) => {
+      request.setRequestHeader(name, headers[name]);
+    });
     request.send(data);
     request.addEventListener("load", () => {
       if (request.status >= 200 && request.status < 300) {

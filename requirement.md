@@ -60,11 +60,13 @@
 > 由`send`方法中的参数解析引发的问题
 
 * 支持配置请求头
+* 在`open`之后以及`send`之前，通过`headers`来设置请求头
+
+> post body URLSearchParams will auto set request header Content-Type: application/x-www-form-urlencoded;charset=UTF-8
 
 ### 处理返回
 
 * 错误信息
 * 请求成功后返回给用户的数据格式
-
 
 ### 整体思路

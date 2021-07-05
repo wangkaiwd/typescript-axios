@@ -15,10 +15,14 @@ function normalizeHeadersName(headers: any) {
 
 export function processHeaders(headers: any, data: any): IHeaders | undefined {
   normalizeHeadersName(headers);
+  if (!headers) {
+    headers = {};
+  }
   if (isPlainObject(data)) {
     // headers default is empty object ?
-    if (headers && !headers["Content-Type"]) {
-      headers["Content-Type"] = "application/json";
+    if (!headers["Content-Type"]) {
+      // If headers not have Content-Type property, set it to application/json
+      headers["Content-Type"] = "application/json; charset=utf-8";
     }
   }
   return headers;

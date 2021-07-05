@@ -7,8 +7,8 @@ import { xhr } from "./xhr";
 function processConfig(config: AxiosConfig): void {
   const { url, params, data, headers } = config;
   config.url = buildUrl(url, params);
-  config.data = transformRequest(data);
   config.headers = processHeaders(headers, data);
+  config.data = transformRequest(data);
 }
 
 function axios(config: AxiosConfig): Promise<AxiosResponse> {
