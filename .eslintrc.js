@@ -24,15 +24,14 @@ module.exports = {
         tsx: "never",
       },
     ],
+    "no-empty": ["error", { allowEmptyCatch: true }],
     "import/prefer-default-export": 0,
     "prefer-destructuring": 0,
     "no-shadow": 0,
+    "prefer-promise-reject-errors": 0,
   },
   settings: {
     "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"],
-    },
     "import/resolver": {
       node: {
         extensions: [".js", ".jsx", ".ts", ".tsx"],

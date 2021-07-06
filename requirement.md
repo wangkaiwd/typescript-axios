@@ -66,7 +66,11 @@
 
 ### 处理返回
 
-* 错误信息
+* 处理响应头(为什么要处理响应头，是出于什么问题而考虑的。目前能想到的1个点：文件下载，通过响应头来获取文件名)
+  * [getAllResponseHeaders](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/getAllResponseHeaders)
+* 支持设置响应类型[`responseType`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseType)
+  * 设置之后感觉没有用？
+  * 实际使用场景：文件下载，服务端返回文件流
 * 请求成功后返回给用户的数据格式
 
 ### 整体思路

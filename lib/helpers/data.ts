@@ -7,3 +7,10 @@ export function transformRequest(data: any) {
   }
   return data;
 }
+
+export function transformResponseData(data: any) {
+  try {
+    data = JSON.parse(data);
+  } catch (e) {}
+  return data;
+}

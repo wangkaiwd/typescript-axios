@@ -27,3 +27,15 @@ export function processHeaders(headers: any, data: any): IHeaders | undefined {
   }
   return headers;
 }
+
+export function parseResponseHeaders(request: XMLHttpRequest): IHeaders {
+  const responseStr = request.getAllResponseHeaders();
+  const array = responseStr.split("\r\n");
+  return array.reduce((memo: IHeaders, item) => {
+    if (item) {
+      const [key, val] = item.split(": ");
+      memo[key] = val;
+    }
+    return memo;
+  }, {});
+}

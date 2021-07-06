@@ -7,7 +7,9 @@ axios({
     a: { x: 2 },
     b: [1, 2, 3],
   },
-}).then(() => {});
+}).then((res) => {
+  console.log("get", res);
+});
 
 axios({
   url: "/base/post",
@@ -15,7 +17,9 @@ axios({
   data: {
     foo: { bar: 1 },
   },
-}).then(null);
+}).then((res) => {
+  console.log("response", res);
+});
 
 const arr = new Int32Array([21, 31]);
 axios({
@@ -33,3 +37,14 @@ axios({
   method: "post",
   data: searchParams,
 }).then(null);
+
+axios({
+  url: "/base/post",
+  method: "post",
+  responseType: "",
+  data: {
+    foo: { bar: 1 },
+  },
+}).then((res) => {
+  console.log("responseType", res);
+});
