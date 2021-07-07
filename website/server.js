@@ -45,9 +45,29 @@ function registerBaseRoute() {
   });
 }
 
+function registerErrorRoute() {
+  app.get("/error/get", (req, res) => {
+    if (Math.random() > 0.5) {
+      res.json({
+        msg: "hello world",
+      });
+    } else {
+      res.status(500);
+      res.end();
+    }
+  });
+  app.get("/error/timeout", (req, res) => {
+    setTimeout(() => {
+      res.json({
+        msg: "Hello World!",
+      });
+    }, 3000);
+  });
+}
+
 registerSimpleRoute();
 registerBaseRoute();
-
+registerErrorRoute();
 // Serve the files on port 3000.
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!\n`);

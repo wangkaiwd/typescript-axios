@@ -20,6 +20,7 @@ export interface AxiosRequestConfig {
   data?: any;
   params?: object;
   headers?: IHeaders;
+  timeout?: number;
   // eslint-disable-next-line no-undef
   responseType?: XMLHttpRequestResponseType;
 }
@@ -32,3 +33,5 @@ export interface AxiosResponse {
   config: AxiosRequestConfig;
   request: XMLHttpRequest;
 }
+
+export interface AxiosError {}
