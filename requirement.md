@@ -86,6 +86,8 @@
 * response: 收到响应，但状态码不是`2xx`
 * config: 请求配置项
 
-知识点：[汇总导出类型文件]()，方便使用者使用类型
+知识点：[汇总导出类型文件](https://github.com/wangkaiwd/typescript-axios/blob/6ef097d9b1150d8669f954f53919206d2ed12fa4/lib/index.ts#L1-L5)，方便使用者使用类型
+
+### 扩展接口
 
 ### 整体思路

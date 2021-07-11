@@ -54,7 +54,6 @@ export function xhr(config: AxiosRequestConfig): Promise<AxiosResponse> {
       handleResponse(response);
     });
     request.addEventListener("error", () => {
-      console.log("error event");
       reject(
         createError({
           request,
@@ -68,6 +67,7 @@ export function xhr(config: AxiosRequestConfig): Promise<AxiosResponse> {
         createError({
           request,
           config,
+          code: "ECONNABORTED",
           message: `Timeout of ${timeout} ms exceeded`,
         })
       );
