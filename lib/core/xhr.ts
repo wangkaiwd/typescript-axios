@@ -1,12 +1,12 @@
-import { createError } from "./helpers/error";
-import { parseResponseHeaders } from "./helpers/header";
-import { AxiosRequestConfig, AxiosResponse } from "./types";
+import { createError } from "../helpers/error";
+import { parseResponseHeaders } from "../helpers/header";
+import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from "../types";
 
-export function xhr(config: AxiosRequestConfig): Promise<AxiosResponse> {
+export function xhr(config: AxiosRequestConfig): AxiosPromise {
   return new Promise((resolve, reject) => {
     const {
       data = null,
-      method,
+      method = "GET",
       url,
       headers = {},
       timeout,
@@ -17,7 +17,7 @@ export function xhr(config: AxiosRequestConfig): Promise<AxiosResponse> {
       request.responseType = responseType;
     }
     const normalizedMethod = method.toUpperCase();
-    request.open(normalizedMethod, url, true);
+    request.open(normalizedMethod, url!, true);
     if (timeout) {
       request.timeout = timeout;
     }

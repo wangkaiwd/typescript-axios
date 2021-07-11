@@ -9,14 +9,16 @@ export type Methods =
   | "DELETE"
   | "options"
   | "OPTIONS"
+  | "put"
+  | "PUT"
   | "patch"
   | "PATCH";
 
 export type IHeaders = Record<string, string>;
 
 export interface AxiosRequestConfig {
-  url: string;
-  method: Methods;
+  url?: string;
+  method?: Methods;
   data?: any;
   params?: object;
   headers?: IHeaders;
@@ -43,4 +45,14 @@ export interface IAxiosError extends Error {
   isAxiosError: boolean;
 }
 
+export type AxiosPromise = Promise<AxiosResponse>;
+
 export type AxiosErrorOptions = Omit<IAxiosError, "isAxiosError" | "name">;
+
+// interface IAxios {
+//   request(config: AxiosRequestConfig): AxiosPromise;
+//
+//   get(): AxiosPromise;
+//
+//   delete(): AxiosPromise;
+// }
