@@ -63,6 +63,13 @@ function registerErrorRoute() {
       });
     }, 3000);
   });
+  /* app.get("/error/network", (req, res) => {
+    setTimeout(() => {
+      res.json({
+        msg: "hello network!",
+      });
+    }, 5000);
+  }); */
 }
 
 registerSimpleRoute();
