@@ -34,4 +34,13 @@ export interface AxiosResponse {
   request: XMLHttpRequest;
 }
 
-export interface AxiosError {}
+export interface IAxiosError extends Error {
+  config: AxiosRequestConfig;
+  code?: string;
+  request?: XMLHttpRequest;
+  response?: AxiosResponse;
+  message: string;
+  isAxiosError: boolean;
+}
+
+export type AxiosErrorOptions = Omit<IAxiosError, "isAxiosError" | "name">;

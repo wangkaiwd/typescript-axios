@@ -31,10 +31,11 @@ module.exports = {
     "prefer-promise-reject-errors": 0,
   },
   settings: {
-    "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
     "import/resolver": {
       node: {
-        extensions: [".js", ".jsx", ".ts", ".tsx"],
+        extensions: [".js", ".ts"],
       },
     },
   },

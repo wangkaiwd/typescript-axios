@@ -1,4 +1,4 @@
-import axios from "../../../lib";
+import axios, { IAxiosError } from "../../../lib";
 
 axios({ url: "/error/get", method: "get" })
   .then((res) => {
@@ -20,7 +20,7 @@ setTimeout(() => {
     .then((res) => {
       console.log("res3", res);
     })
-    .catch((reason) => {
-      console.log("reason3", reason);
+    .catch((reason: IAxiosError) => {
+      console.log("network error", reason);
     });
 }, 5000);

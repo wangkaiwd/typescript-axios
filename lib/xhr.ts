@@ -1,3 +1,4 @@
+import { createError } from "./helpers/error";
 import { parseResponseHeaders } from "./helpers/header";
 import { AxiosRequestConfig, AxiosResponse } from "./types";
 
@@ -24,6 +25,22 @@ export function xhr(config: AxiosRequestConfig): Promise<AxiosResponse> {
       request.setRequestHeader(name, headers[name]);
     });
     request.send(data);
+
+    function handleResponse(response: AxiosResponse) {
+      if (request.status >= 200 && request.status < 300) {
+        resolve(response);
+      } else {
+        reject(
+          createError({
+            request,
+            response,
+            config,
+            message: `Request failed with status code ${response.status}`,
+          })
+        );
+      }
+    }
+
     request.addEventListener("load", () => {
       const responseHeaders = parseResponseHeaders(request);
       const response = {
@@ -34,17 +51,26 @@ export function xhr(config: AxiosRequestConfig): Promise<AxiosResponse> {
         config,
         request,
       };
-      if (request.status >= 200 && request.status < 300) {
-        resolve(response);
-      } else {
-        reject(new Error(`Request failed with status code ${response.status}`));
-      }
+      handleResponse(response);
     });
     request.addEventListener("error", () => {
-      reject(new Error("Network Error"));
+      console.log("error event");
+      reject(
+        createError({
+          request,
+          config,
+          message: "Network Error",
+        })
+      );
     });
     request.addEventListener("timeout", () => {
-      reject(new Error(`Timeout of ${timeout} ms exceeded`));
+      reject(
+        createError({
+          request,
+          config,
+          message: `Timeout of ${timeout} ms exceeded`,
+        })
+      );
     });
   });
 }
