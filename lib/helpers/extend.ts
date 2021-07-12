@@ -1,6 +1,7 @@
-export function extend<T, U> (to: T, from: U): T & U {
-  // Object.keys(from).forEach((key) => {
-  //   ;(to as T & U)[key] = from[key];
-  // });
-  return to as T & U;
+// todo: How to specify types for extend function elegant?
+export function extend<T extends object, U extends object>(
+  to: T,
+  from: U
+): T & U {
+  return { ...from, ...to };
 }

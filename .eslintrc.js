@@ -30,6 +30,8 @@ module.exports = {
     "prefer-destructuring": 0,
     "no-shadow": 0,
     "prefer-promise-reject-errors": 0,
+    "no-unused-vars": 0,
+    "@typescript-eslint/no-unused-vars": ["error"],
   },
   settings: {
     "import/extensions": "off",

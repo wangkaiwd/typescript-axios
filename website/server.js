@@ -64,13 +64,27 @@ function registerErrorRoute() {
     }, 3000);
   });
 }
+
 function registerExtendRoute() {
-  
+  app.post("/extend/post").then((req, res) => {
+    res.json({
+      msg: "extend post",
+      result: req.body,
+    });
+  });
+
+  app.get("/extend/get").then((req, res) => {
+    res.json({
+      msg: "extend get",
+      result: req.query,
+    });
+  });
 }
 
 registerSimpleRoute();
 registerBaseRoute();
 registerErrorRoute();
+registerExtendRoute();
 // Serve the files on port 3000.
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!\n`);

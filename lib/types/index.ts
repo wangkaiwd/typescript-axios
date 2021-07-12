@@ -1,3 +1,5 @@
+import Axios from "../core/Axios";
+
 export type Methods =
   | "get"
   | "GET"
@@ -49,10 +51,6 @@ export type AxiosPromise = Promise<AxiosResponse>;
 
 export type AxiosErrorOptions = Omit<IAxiosError, "isAxiosError" | "name">;
 
-// interface IAxios {
-//   request(config: AxiosRequestConfig): AxiosPromise;
-//
-//   get(): AxiosPromise;
-//
-//   delete(): AxiosPromise;
-// }
+export interface AxiosInstance extends InstanceType<typeof Axios> {
+  (config: AxiosRequestConfig): AxiosPromise;
+}

@@ -1,3 +1,12 @@
-import dispatchRequest from "./core/dispatchRequest";
+import Axios from "./core/Axios";
+import { extend } from "./helpers/extend";
+import { AxiosInstance } from "./types";
 
-export default dispatchRequest;
+function createInstance(): AxiosInstance {
+  const context = new Axios();
+  const instance = context.request.bind(context);
+  return extend(instance, context);
+}
+
+const axios = createInstance();
+export default axios;
