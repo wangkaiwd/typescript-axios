@@ -32,6 +32,7 @@ module.exports = {
     "prefer-promise-reject-errors": 0,
     "no-unused-vars": 0,
     "@typescript-eslint/no-unused-vars": ["error"],
+    "no-restricted-syntax": 0,
   },
   settings: {
     "import/extensions": "off",

@@ -66,17 +66,52 @@ function registerErrorRoute() {
 }
 
 function registerExtendRoute() {
-  app.post("/extend/post").then((req, res) => {
+  app.post("/extend/post", (req, res) => {
     res.json({
       msg: "extend post",
       result: req.body,
     });
   });
 
-  app.get("/extend/get").then((req, res) => {
+  app.get("/extend/get", (req, res) => {
     res.json({
       msg: "extend get",
       result: req.query,
+    });
+  });
+
+  app.head("/extend/head", (req, res) => {
+    res.json({
+      msg: "extend head",
+      result: req.query,
+    });
+  });
+
+  app.delete("/extend/delete", (req, res) => {
+    res.json({
+      msg: "extend delete",
+      result: req.body,
+    });
+  });
+
+  app.options("/extend/options", (req, res) => {
+    res.json({
+      msg: "extend options",
+      result: req.body,
+    });
+  });
+
+  app.put("/extend/put", (req, res) => {
+    res.json({
+      msg: "extend put",
+      result: req.body,
+    });
+  });
+
+  app.patch("/extend/patch", (req, res) => {
+    res.json({
+      msg: "extend patch",
+      result: req.body,
     });
   });
 }

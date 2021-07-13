@@ -1,4 +1,4 @@
-import dispatchRequest from "../axios";
+import dispatchRequest from "./dispatchRequest";
 import { AxiosPromise, AxiosRequestConfig } from "../types";
 
 export default class Axios {
