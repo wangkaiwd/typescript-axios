@@ -97,4 +97,9 @@
 
 核心：`axios`本身是一个可以直接调用的函数，而且它也是一个对象，可以通过它的属性来调用不同的方法
 
+#### 知识点
+
+* 使用[扩展运算符实现属性对象属性的合并](https://github.com/wangkaiwd/typescript-axios/blob/ff0d0046dfbe74708706b1212d19103797dd25a1/lib/helpers/extend.ts#L2-L7)，并支持类型提示
+* 使一个[变量既是函数又是对象](https://github.com/wangkaiwd/typescript-axios/blob/ff0d0046dfbe74708706b1212d19103797dd25a1/lib/axios.ts#L5-L9))
+
 ### 整体思路
