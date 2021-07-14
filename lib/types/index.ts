@@ -29,10 +29,10 @@ export interface AxiosRequestConfig {
   responseType?: XMLHttpRequestResponseType;
 }
 
-export interface AxiosResponse {
+export interface AxiosResponse<T = any> {
   status: number;
   statusText: string;
-  data: any;
+  data: T;
   headers: IHeaders;
   config: AxiosRequestConfig;
   request: XMLHttpRequest;
@@ -47,13 +47,14 @@ export interface IAxiosError extends Error {
   isAxiosError: boolean;
 }
 
-export type AxiosPromise = Promise<AxiosResponse>;
+export type AxiosPromise<T = any> = Promise<AxiosResponse<T>>;
 
 export type AxiosErrorOptions = Omit<IAxiosError, "isAxiosError" | "name">;
 
 export interface AxiosInstance extends InstanceType<typeof Axios> {
   // function overload: https://www.typescriptlang.org/docs/handbook/2/functions.html#function-overloads
-  (config: AxiosRequestConfig): AxiosPromise;
+  // notice position of generic parameters
+  <T = any>(config: AxiosRequestConfig): AxiosPromise<T>;
 
-  (url: string, config?: AxiosRequestConfig): AxiosPromise;
+  <T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>;
 }

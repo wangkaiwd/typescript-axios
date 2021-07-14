@@ -1,15 +1,22 @@
 import axios from "../../../lib";
 
+interface TestData {
+  msg: string;
+  result?: string;
+}
+
 axios("/extend/post", { method: "post" }).then((res) => {
   console.log("overload axios", res);
 });
-axios({
+axios<TestData>({
+  // support generic
   url: "/extend/post",
   method: "post",
   data: {
     msg: "hi",
   },
 }).then((res) => {
+  console.log("res", res.data);
   console.log("aixos", res);
 });
 

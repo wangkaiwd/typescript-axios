@@ -2,10 +2,10 @@ import dispatchRequest from "./dispatchRequest";
 import { AxiosPromise, AxiosRequestConfig } from "../types";
 
 export default class Axios {
-  request(
+  request<T = any>(
     url: string | AxiosRequestConfig,
     config?: AxiosRequestConfig
-  ): AxiosPromise {
+  ): AxiosPromise<T> {
     if (typeof url === "string") {
       // type guard by typeof operator
       if (!config) {
@@ -18,40 +18,44 @@ export default class Axios {
     return dispatchRequest(config);
   }
 
-  get(url: string, config?: AxiosRequestConfig): AxiosPromise {
-    return this.request({
+  get<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T> {
+    return this.request<T>({
       ...config,
       url,
       method: "get",
     });
   }
 
-  delete(url: string, config?: AxiosRequestConfig): AxiosPromise {
-    return this.request({
+  delete<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T> {
+    return this.request<T>({
       ...config,
       url,
       method: "delete",
     });
   }
 
-  head(url: string, config?: AxiosRequestConfig): AxiosPromise {
-    return this.request({
+  head<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T> {
+    return this.request<T>({
       ...config,
       url,
       method: "head",
     });
   }
 
-  options(url: string, config?: AxiosRequestConfig): AxiosPromise {
-    return this.request({
+  options<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T> {
+    return this.request<T>({
       ...config,
       url,
       method: "options",
     });
   }
 
-  post(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise {
-    return this.request({
+  post<T = any>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): AxiosPromise<T> {
+    return this.request<T>({
       ...config,
       url,
       data,
@@ -59,8 +63,12 @@ export default class Axios {
     });
   }
 
-  put(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise {
-    return this.request({
+  put<T = any>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): AxiosPromise {
+    return this.request<T>({
       ...config,
       url,
       data,
@@ -68,8 +76,12 @@ export default class Axios {
     });
   }
 
-  patch(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise {
-    return this.request({
+  patch<T = any>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): AxiosPromise<T> {
+    return this.request<T>({
       ...config,
       url,
       method: "patch",
