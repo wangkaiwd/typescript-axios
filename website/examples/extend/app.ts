@@ -1,5 +1,8 @@
 import axios from "../../../lib";
 
+axios("/extend/post", { method: "post" }).then((res) => {
+  console.log("overload axios", res);
+});
 axios({
   url: "/extend/post",
   method: "post",

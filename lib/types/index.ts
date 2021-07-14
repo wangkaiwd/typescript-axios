@@ -52,5 +52,8 @@ export type AxiosPromise = Promise<AxiosResponse>;
 export type AxiosErrorOptions = Omit<IAxiosError, "isAxiosError" | "name">;
 
 export interface AxiosInstance extends InstanceType<typeof Axios> {
+  // function overload: https://www.typescriptlang.org/docs/handbook/2/functions.html#function-overloads
   (config: AxiosRequestConfig): AxiosPromise;
+
+  (url: string, config?: AxiosRequestConfig): AxiosPromise;
 }
