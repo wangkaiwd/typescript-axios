@@ -16,7 +16,7 @@ export type Methods =
   | "patch"
   | "PATCH";
 
-export type IHeaders = Record<string, string>;
+export type IHeaders = Record<string, any>;
 
 export interface AxiosRequestConfig {
   url?: string;

@@ -62,10 +62,11 @@ export default class Axios {
         rejected: rejectedFn,
       });
     }
-    const p = Promise.resolve(config);
+    let p = Promise.resolve(config);
     chains.forEach((chain) => {
       const { resolved, rejected } = chain;
-      p.then(resolved, rejected);
+      // think difference with:  p.then(resolved,rejected); return p
+      p = p.then(resolved, rejected);
     });
     // todo: How to optimize this force type transform?v
     return p as AxiosPromise<T>;

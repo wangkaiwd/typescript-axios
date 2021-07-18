@@ -116,10 +116,19 @@ function registerExtendRoute() {
   });
 }
 
+function registerInterceptorRoute() {
+  app.post("/interceptor/demo", (req, res) => {
+    res.json({
+      msg: "hello",
+    });
+  });
+}
+
 registerSimpleRoute();
 registerBaseRoute();
 registerErrorRoute();
 registerExtendRoute();
+registerInterceptorRoute();
 // Serve the files on port 3000.
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!\n`);

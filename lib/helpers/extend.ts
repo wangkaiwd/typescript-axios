@@ -4,9 +4,7 @@ export function extend<T extends object, U extends object>(
   from: U
 ): T & U {
   for (const key in from) {
-    if (Object.prototype.hasOwnProperty.call(from, key)) {
-      (to as T & U)[key] = from[key] as any;
-    }
+    (to as T & U)[key] = from[key] as any;
   }
   return to as T & U;
 }
