@@ -15,7 +15,7 @@ function transformResponse(response: AxiosResponse) {
   response.data = transformResponseData(response.data);
 }
 
-function dispatchRequest(config: AxiosRequestConfig): AxiosPromise {
+function dispatchRequest<T = any>(config: AxiosRequestConfig): AxiosPromise<T> {
   processConfig(config);
   return xhr(config).then((response) => {
     transformResponse(response);

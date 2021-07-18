@@ -59,5 +59,5 @@ export interface AxiosInstance extends InstanceType<typeof Axios> {
   <T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>;
 }
 
-export type ResolvedFn<T> = (val: T) => T | AxiosPromise<T>;
+export type ResolvedFn<T = any> = (val: T) => T | Promise<T>;
 export type RejectedFn = (error: any) => Promise<any>;

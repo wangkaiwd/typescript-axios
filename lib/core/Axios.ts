@@ -1,7 +1,33 @@
 import dispatchRequest from "./dispatchRequest";
-import { AxiosPromise, AxiosRequestConfig } from "../types";
+import {
+  AxiosPromise,
+  AxiosRequestConfig,
+  AxiosResponse,
+  RejectedFn,
+  ResolvedFn,
+} from "../types";
+import AxiosInterceptorManager from "./InterceptorManager";
+
+interface PromiseChain {
+  resolved: ResolvedFn | ((config: AxiosRequestConfig) => AxiosPromise);
+  rejected?: RejectedFn;
+}
+
+interface Interceptors {
+  request: AxiosInterceptorManager<AxiosRequestConfig>;
+  response: AxiosInterceptorManager<AxiosResponse>;
+}
 
 export default class Axios {
+  interceptors: Interceptors;
+
+  constructor() {
+    this.interceptors = {
+      request: new AxiosInterceptorManager<AxiosRequestConfig>(),
+      response: new AxiosInterceptorManager<AxiosResponse>(),
+    };
+  }
+
   request<T = any>(
     url: string | AxiosRequestConfig,
     config?: AxiosRequestConfig
@@ -15,7 +41,34 @@ export default class Axios {
     } else {
       config = url;
     }
-    return dispatchRequest(config);
+    const chains: PromiseChain[] = [];
+    const reqInterceptors = this.interceptors.request.interceptors;
+    const resInterceptors = this.interceptors.response.interceptors;
+    for (let i = 0; i < reqInterceptors.length; i++) {
+      const { resolvedFn, rejectedFn } = reqInterceptors[i]!;
+      chains.push({
+        resolved: resolvedFn,
+        rejected: rejectedFn,
+      });
+    }
+    chains.push({
+      resolved: dispatchRequest,
+      rejected: undefined,
+    });
+    for (let i = 0; i < resInterceptors.length; i++) {
+      const { resolvedFn, rejectedFn } = resInterceptors[i]!;
+      chains.push({
+        resolved: resolvedFn,
+        rejected: rejectedFn,
+      });
+    }
+    const p = Promise.resolve(config);
+    chains.forEach((chain) => {
+      const { resolved, rejected } = chain;
+      p.then(resolved, rejected);
+    });
+    // todo: How to optimize this force type transform?v
+    return p as AxiosPromise<T>;
   }
 
   get<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T> {
