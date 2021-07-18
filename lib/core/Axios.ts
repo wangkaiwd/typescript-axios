@@ -68,7 +68,7 @@ export default class Axios {
       // think difference with:  p.then(resolved,rejected); return p
       p = p.then(resolved, rejected);
     });
-    // todo: How to optimize this force type transform?v
+    // todo: How to optimize this force type transform?
     return p as AxiosPromise<T>;
   }
 
