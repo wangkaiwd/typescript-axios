@@ -8,8 +8,8 @@ axios.interceptors.request.use((config) => {
 });
 
 axios.interceptors.request.use((config) => {
-  console.log("config", config);
   test += 1;
+  config.headers = config.headers ?? {};
   if (config.headers) {
     config.headers.test = test;
   }

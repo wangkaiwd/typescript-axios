@@ -107,13 +107,14 @@
 
 #### 知识点
 
-*
-使用[扩展运算符实现属性对象属性的合并](https://github.com/wangkaiwd/typescript-axios/blob/ff0d0046dfbe74708706b1212d19103797dd25a1/lib/helpers/extend.ts#L2-L7)
+* 使用[扩展运算符实现属性对象属性的合并](https://github.com/wangkaiwd/typescript-axios/blob/ff0d0046dfbe74708706b1212d19103797dd25a1/lib/helpers/extend.ts#L2-L7)
 ，并支持类型提示
-*
-使一个[变量既是函数又是对象](https://github.com/wangkaiwd/typescript-axios/blob/ff0d0046dfbe74708706b1212d19103797dd25a1/lib/axios.ts#L5-L9)
+
+* 使一个[变量既是函数又是对象](https://github.com/wangkaiwd/typescript-axios/blob/ff0d0046dfbe74708706b1212d19103797dd25a1/lib/axios.ts#L5-L9)
 
 ### 拦截器
+
+#### 需求分析
 
 * 设置公共的请求响应拦截器管理类
 
@@ -121,6 +122,10 @@
 
 * [review call promise then chain](https://github.com/wangkaiwd/typescript-axios/blob/2c0129bee059cd1e4ed4ce4b0a2268e572cad13d/lib/core/Axios.ts#L68-L69)
 
-#### 需求分析
+### 配置化
+
+#### 合并配置的设计与实现
+
+#### 请求和响应配置化
 
 ### 整体思路
