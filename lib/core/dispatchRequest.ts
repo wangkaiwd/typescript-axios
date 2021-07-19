@@ -5,6 +5,7 @@ import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from "../types";
 import { xhr } from "./xhr";
 
 function processConfig(config: AxiosRequestConfig): void {
+  // merge config
   const { url = "", params, data, headers } = config;
   config.url = buildUrl(url, params);
   config.headers = processHeaders(headers, data);

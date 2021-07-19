@@ -21,7 +21,10 @@ interface Interceptors {
 export default class Axios {
   interceptors: Interceptors;
 
-  constructor() {
+  defaults: AxiosRequestConfig;
+
+  constructor(initConfig: AxiosRequestConfig) {
+    this.defaults = initConfig;
     this.interceptors = {
       request: new AxiosInterceptorManager<AxiosRequestConfig>(),
       response: new AxiosInterceptorManager<AxiosResponse>(),

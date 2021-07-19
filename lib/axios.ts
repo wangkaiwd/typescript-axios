@@ -1,12 +1,13 @@
 import Axios from "./core/Axios";
+import defaults from "./default";
 import { extend } from "./helpers/extend";
-import { AxiosInstance } from "./types";
+import { AxiosInstance, AxiosRequestConfig } from "./types";
 
-function createInstance(): AxiosInstance {
-  const context = new Axios();
+function createInstance(config: AxiosRequestConfig): AxiosInstance {
+  const context = new Axios(config);
   const instance = context.request.bind(context);
   return extend(instance, context);
 }
 
-const axios = createInstance();
+const axios = createInstance(defaults);
 export default axios;

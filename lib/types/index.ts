@@ -27,6 +27,8 @@ export interface AxiosRequestConfig {
   timeout?: number;
   // eslint-disable-next-line no-undef
   responseType?: XMLHttpRequestResponseType;
+
+  [k: string]: any;
 }
 
 export interface AxiosResponse<T = any> {
