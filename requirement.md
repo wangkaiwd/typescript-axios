@@ -48,7 +48,7 @@
   * `multipart/form-data`
   * `text/plain`
 
-如果传入的参数可以被`JSON.parse`进行解析，`axios`会默认设置`application/json`请求头
+如果传入的参数可以被`JSON.parse`进行解析并且`headers`中没有设置`Content-Type`，`axios`会默认设置`application/json`请求头
 
 参考资料：
 
@@ -92,7 +92,7 @@
 
 #### `api`扩展
 
-为了方便用户更加方便的调用，我们对使用方法进行了扩展：
+为了让用户更加方便的调用，我们对使用方法进行了扩展：
 
 * axios(config)
 * axios.verb(url,data?,config?)
@@ -107,10 +107,14 @@
 
 #### 知识点
 
-* 使用[扩展运算符实现属性对象属性的合并](https://github.com/wangkaiwd/typescript-axios/blob/ff0d0046dfbe74708706b1212d19103797dd25a1/lib/helpers/extend.ts#L2-L7)
+*
+
+使用[扩展运算符实现属性对象属性的合并](https://github.com/wangkaiwd/typescript-axios/blob/ff0d0046dfbe74708706b1212d19103797dd25a1/lib/helpers/extend.ts#L2-L7)
 ，并支持类型提示
 
-* 使一个[变量既是函数又是对象](https://github.com/wangkaiwd/typescript-axios/blob/ff0d0046dfbe74708706b1212d19103797dd25a1/lib/axios.ts#L5-L9)
+*
+
+使一个[变量既是函数又是对象](https://github.com/wangkaiwd/typescript-axios/blob/ff0d0046dfbe74708706b1212d19103797dd25a1/lib/axios.ts#L5-L9)
 
 ### 拦截器
 
