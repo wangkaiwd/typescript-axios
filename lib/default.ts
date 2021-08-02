@@ -10,18 +10,18 @@ const defaults: AxiosRequestConfig = {
   },
 };
 
-const methodsWithoutData = ["get", "delete", "head", "options"];
-
-methodsWithoutData.forEach((method) => {
-  defaults.headers![method] = {};
-});
-
-const methodsWithData = ["post", "put", "patch"];
-
-methodsWithData.forEach((method) => {
-  defaults.headers![method] = {
-    "Content-Type": "application/x-www-form-urlencoded",
-  };
-});
+// const methodsWithoutData = ["get", "delete", "head", "options"];
+//
+// methodsWithoutData.forEach((method) => {
+//   defaults.headers![method] = {};
+// });
+//
+// const methodsWithData = ["post", "put", "patch"];
+//
+// methodsWithData.forEach((method) => {
+//   defaults.headers![method] = {
+//     "Content-Type": "application/x-www-form-urlencoded",
+//   };
+// });
 
 export default defaults;
