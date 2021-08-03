@@ -23,7 +23,7 @@
 npx tsc --init
 ```
 
-### 规范提交
+### 提交规范
 
 用到的第三方库：
 
@@ -34,17 +34,14 @@ npx tsc --init
 
 ### 高效开发
 
-在测试页面中使用`axios`，模拟真实使用场景
+在测试页面中使用`axios`，模拟真实使用场景：
 
-* 测试页面：`vite` + `typescript` + `ant design vue`
+* 目前的开发环境配置[在这里](https://github.com/wangkaiwd/typescript-axios/blob/master/website/readme.md)
 
-问题：配置已初步完成，但是步骤过于繁琐，且没有找到如何为`vue3`项目指定`tsconfig`的方法
+### 调试
 
-目前的开发环境配置[在这里](https://github.com/wangkaiwd/typescript-axios/blob/master/website/readme.md)
-
-### 如何断点调试？
-* 如何使用编辑器断点调试源代码？
 * 目前可以直接在`chrome`浏览器中调试
+* 如何使用编辑器断点调试源代码？
 
 ### 代码质量
 
