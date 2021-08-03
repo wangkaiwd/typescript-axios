@@ -124,11 +124,18 @@ function registerInterceptorRoute() {
   });
 }
 
+function registerConfigRoute() {
+  app.post("/config/post", (req, res) => {
+    res.json({ message: "success" });
+  });
+}
+
 registerSimpleRoute();
 registerBaseRoute();
 registerErrorRoute();
 registerExtendRoute();
 registerInterceptorRoute();
+registerConfigRoute();
 // Serve the files on port 3000.
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!\n`);

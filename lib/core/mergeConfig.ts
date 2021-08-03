@@ -1,55 +1,75 @@
 import { AxiosRequestConfig } from "../types";
 import { isObject } from "../utils";
 
-// const strategies: any = {};
-//
-// function defaultStrategy(val1: any, val2: any): any {
-//   return val2 == null ? val1 : val2;
-// }
-//
-// function deepMergeStrategy(val1: any, val2: any): any {
-//   if (val1 == null) {
-//     return val2;
-//   }
-//   if (val2 == null) {
-//     return val1;
-//   }
-//   return deepMerge(val1, val2);
-// }
-//
-// function mergeField(config1: any, config2: any, key: string) {
-//   const strategy = strategies[key] ?? defaultStrategy;
-//   return strategy(config1[key], config2[key]);
-// }
+type IStrategies = {
+  [K in keyof AxiosRequestConfig]: (...args: any[]) => any;
+};
+
+const strategies: IStrategies = {};
+
+const fromVal2Keys = ["url", "params", "data"];
+const deepMergeKeys = ["headers"];
+
+function deepMergeStrategy(val1: any, val2: any): object {
+  const result: any = {};
+  Object.keys(val1).forEach((key) => {
+    const val1Element = val1[key];
+    const val2Element = val2[key];
+    if (key in val2) {
+      if (isObject(val1Element) && isObject(val2Element)) {
+        result[key] = deepMergeStrategy(val1Element, val2Element);
+      } else {
+        result[key] = val2Element;
+      }
+    } else {
+      result[key] = val1Element;
+    }
+  });
+  Object.keys(val2).forEach((key) => {
+    if (!(key in val1)) {
+      result[key] = val2[key];
+    }
+  });
+  return result;
+}
+
+function strategyFromVal2(val1: any, val2: any): any {
+  return val2;
+}
+
+function defaultStrategy(val1: any, val2: any): any {
+  return val2 == null ? val1 : val2;
+}
+
+fromVal2Keys.forEach((key) => {
+  strategies[key] = strategyFromVal2;
+});
+
+deepMergeKeys.forEach((key) => {
+  strategies[key] = deepMergeStrategy;
+});
+
+function mergeField(config1: any, config2: any, key: string) {
+  const strategy = strategies[key] ?? defaultStrategy;
+  return strategy(config1[key], config2[key]);
+}
 
 // use strategy pattern
 export function mergeConfig(
   config1: AxiosRequestConfig,
   config2: AxiosRequestConfig
 ): AxiosRequestConfig {
-  const result: any = {};
-  // all own and only config1 own
-  for (const key in config1) {
-    if (Object.prototype.hasOwnProperty.call(config1, key)) {
-      if (key in config2) {
-        if (isObject(config1[key])) {
-          result[key] = mergeConfig(config1[key], config2[key]);
-        } else {
-          result[key] = config2[key];
-        }
-      } else {
-        result[key] = config1[key];
-      }
+  const result: AxiosRequestConfig = {};
+  Object.keys(config1).forEach((key) => {
+    // exist in both config and only in config1
+    result[key] = mergeField(config1, config2, key);
+  });
+
+  Object.keys(config2).forEach((key) => {
+    // only in config2
+    if (!(key in config1)) {
+      result[key] = mergeField(config1, config2, key);
     }
-  }
-  // only config2 own
-  for (const key in config2) {
-    if (
-      Object.prototype.hasOwnProperty.call(config2, key) &&
-      !Object.prototype.hasOwnProperty.call(config1, key)
-    ) {
-      result[key] = config2[key];
-    }
-  }
+  });
   return result;
 }

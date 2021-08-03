@@ -7,6 +7,7 @@ import {
   ResolvedFn,
 } from "../types";
 import AxiosInterceptorManager from "./InterceptorManager";
+import { mergeConfig } from "./mergeConfig";
 
 interface PromiseChain {
   resolved: ResolvedFn | ((config: AxiosRequestConfig) => AxiosPromise);
@@ -65,7 +66,7 @@ export default class Axios {
         rejected: rejectedFn,
       });
     }
-    let p = Promise.resolve(config);
+    let p = Promise.resolve(mergeConfig(this.defaults, config));
     chains.forEach((chain) => {
       const { resolved, rejected } = chain;
       // think difference with:  p.then(resolved,rejected); return p
