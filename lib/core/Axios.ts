@@ -1,13 +1,13 @@
-import dispatchRequest from "./dispatchRequest";
+import dispatchRequest from './dispatchRequest';
 import {
   AxiosPromise,
   AxiosRequestConfig,
   AxiosResponse,
   RejectedFn,
   ResolvedFn,
-} from "../types";
-import AxiosInterceptorManager from "./InterceptorManager";
-import { mergeConfig } from "./mergeConfig";
+} from '../types';
+import AxiosInterceptorManager from './InterceptorManager';
+import { mergeConfig } from './mergeConfig';
 
 interface PromiseChain {
   resolved: ResolvedFn | ((config: AxiosRequestConfig) => AxiosPromise);
@@ -24,7 +24,7 @@ export default class Axios {
 
   defaults: AxiosRequestConfig;
 
-  constructor(initConfig: AxiosRequestConfig) {
+  constructor (initConfig: AxiosRequestConfig) {
     this.defaults = initConfig;
     this.interceptors = {
       request: new AxiosInterceptorManager<AxiosRequestConfig>(),
@@ -32,11 +32,11 @@ export default class Axios {
     };
   }
 
-  request<T = any>(
+  request<T = any> (
     url: string | AxiosRequestConfig,
     config?: AxiosRequestConfig
   ): AxiosPromise<T> {
-    if (typeof url === "string") {
+    if (typeof url === 'string') {
       // type guard by typeof operator
       if (!config) {
         config = {};
@@ -76,39 +76,39 @@ export default class Axios {
     return p as AxiosPromise<T>;
   }
 
-  get<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T> {
+  get<T = any> (url: string, config?: AxiosRequestConfig): AxiosPromise<T> {
     return this.request<T>({
       ...config,
       url,
-      method: "get",
+      method: 'get',
     });
   }
 
-  delete<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T> {
+  delete<T = any> (url: string, config?: AxiosRequestConfig): AxiosPromise<T> {
     return this.request<T>({
       ...config,
       url,
-      method: "delete",
+      method: 'delete',
     });
   }
 
-  head<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T> {
+  head<T = any> (url: string, config?: AxiosRequestConfig): AxiosPromise<T> {
     return this.request<T>({
       ...config,
       url,
-      method: "head",
+      method: 'head',
     });
   }
 
-  options<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T> {
+  options<T = any> (url: string, config?: AxiosRequestConfig): AxiosPromise<T> {
     return this.request<T>({
       ...config,
       url,
-      method: "options",
+      method: 'options',
     });
   }
 
-  post<T = any>(
+  post<T = any> (
     url: string,
     data?: any,
     config?: AxiosRequestConfig
@@ -117,11 +117,11 @@ export default class Axios {
       ...config,
       url,
       data,
-      method: "post",
+      method: 'post',
     });
   }
 
-  put<T = any>(
+  put<T = any> (
     url: string,
     data?: any,
     config?: AxiosRequestConfig
@@ -130,11 +130,11 @@ export default class Axios {
       ...config,
       url,
       data,
-      method: "put",
+      method: 'put',
     });
   }
 
-  patch<T = any>(
+  patch<T = any> (
     url: string,
     data?: any,
     config?: AxiosRequestConfig
@@ -142,7 +142,7 @@ export default class Axios {
     return this.request<T>({
       ...config,
       url,
-      method: "patch",
+      method: 'patch',
     });
   }
 }
