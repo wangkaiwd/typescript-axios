@@ -1,20 +1,21 @@
-import { transformRequest, transformResponseData } from '../helpers/data';
-import { flattenHeaders, processHeaders } from '../helpers/header';
+import { flattenHeaders } from '../helpers/header';
 import buildUrl from '../helpers/url';
 import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from '../types';
 import { xhr } from './xhr';
+import { transform } from './transform';
 
 function processConfig (config: AxiosRequestConfig): void {
   // merge config
   const { url = '', params, data, headers, method } = config;
   config.url = buildUrl(url, params);
-  config.headers = flattenHeaders(processHeaders(headers, data), method!);
-  console.log('headers', config.headers);
-  config.data = transformRequest(data);
+  // why headers not as a return value and pass next function
+  config.data = transform(data, headers, config.transformRequest);
+  config.headers = flattenHeaders(headers!, method!);
 }
 
+// config: global instance scope 
 function transformResponse (response: AxiosResponse) {
-  response.data = transformResponseData(response.data);
+  response.data = transform(response.data, response.headers, response.config.transformResponse);
 }
 
 function dispatchRequest<T = any> (config: AxiosRequestConfig): AxiosPromise<T> {

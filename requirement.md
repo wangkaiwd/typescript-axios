@@ -107,9 +107,14 @@
 
 #### 知识点
 
-* 使用[扩展运算符实现属性对象属性的合并](https://github.com/wangkaiwd/typescript-axios/blob/ff0d0046dfbe74708706b1212d19103797dd25a1/lib/helpers/extend.ts#L2-L7)
+*
+
+使用[扩展运算符实现属性对象属性的合并](https://github.com/wangkaiwd/typescript-axios/blob/ff0d0046dfbe74708706b1212d19103797dd25a1/lib/helpers/extend.ts#L2-L7)
 ，并支持类型提示
-* 使一个[变量既是函数又是对象](https://github.com/wangkaiwd/typescript-axios/blob/ff0d0046dfbe74708706b1212d19103797dd25a1/lib/axios.ts#L5-L9)
+
+*
+
+使一个[变量既是函数又是对象](https://github.com/wangkaiwd/typescript-axios/blob/ff0d0046dfbe74708706b1212d19103797dd25a1/lib/axios.ts#L5-L9)
 
 ### 拦截器
 
@@ -132,9 +137,9 @@
 
 要合并的配置：
 
-* 全局默认配置
-* 实例配置
-* 请求配置
+* 全局配置(所有请求)
+* 实例配置(每个实例)
+* 请求配置(每个请求)
 
 合并策略(`config1`和`config2`合并)：
 
@@ -144,4 +149,19 @@
 
 #### 请求和响应配置化
 
+* 配置响应和请求
+  * transformRequest
+  * transformResponse
+
+#### 扩展`axios.create`静态接口
+* 利用类型断言强制转换`axios`的类型
+
 ### 整体思路
+
+### 复杂点
+
+* 配置合并：
+  * 策略模式
+  * 深度合并
+  * 拍平`headers`
+
