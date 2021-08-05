@@ -11,6 +11,7 @@ export function xhr(config: AxiosRequestConfig): AxiosPromise {
       headers = {},
       timeout,
       responseType,
+      cancelToken,
     } = config;
     const request = new XMLHttpRequest();
     if (responseType != null) {
@@ -25,6 +26,13 @@ export function xhr(config: AxiosRequestConfig): AxiosPromise {
       request.setRequestHeader(name, headers[name]);
     });
     request.send(data);
+
+    if (cancelToken) {
+      cancelToken().then((reason: any) => {
+        request.abort();
+        reject(reason);
+      });
+    }
 
     function handleResponse(response: AxiosResponse) {
       if (request.status >= 200 && request.status < 300) {
