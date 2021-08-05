@@ -27,7 +27,6 @@ export function xhr(config: AxiosRequestConfig): AxiosPromise {
     request.send(data);
 
     function handleResponse(response: AxiosResponse) {
-      console.log("response", response);
       if (request.status >= 200 && request.status < 300) {
         resolve(response);
       } else {

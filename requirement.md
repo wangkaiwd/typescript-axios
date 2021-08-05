@@ -154,7 +154,26 @@
   * transformResponse
 
 #### 扩展`axios.create`静态接口
+
 * 利用类型断言强制转换`axios`的类型
+
+### 取消请求
+
+* [`XMLHttpRequest.abort()`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/abort)
+* [how to cancel a pending promise](https://github.com/wangkaiwd/node-core/blob/main/00.promise/promise-abort.js)
+
+难点：
+
+* 如何让用户取消请求
+
+```js
+let cancel = undefined
+axios({
+  url: 'xxx', cancelFn: function(c) { // c = xhr.abort.bind(xhr)
+    cancel = c
+  }
+})
+```
 
 ### 整体思路
 
