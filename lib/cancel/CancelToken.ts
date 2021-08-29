@@ -1,11 +1,11 @@
-import { CancelExecutor } from '../types';
+import { CancelExecutor } from "../types";
 
 class CancelToken {
   promise: Promise<string>;
 
   reason?: string;
 
-  constructor (executor: CancelExecutor) {
+  constructor(executor: CancelExecutor) {
     let resolvePromise: (reason: string) => void;
     this.promise = new Promise<string>((resolve) => {
       resolvePromise = resolve;

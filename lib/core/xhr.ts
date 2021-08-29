@@ -28,9 +28,15 @@ export function xhr(config: AxiosRequestConfig): AxiosPromise {
     request.send(data);
 
     if (cancelToken) {
-      cancelToken().then((reason: any) => {
+      cancelToken.promise.then((reason: string) => {
         request.abort();
-        reject(reason);
+        reject(
+          createError({
+            request,
+            config,
+            message: reason,
+          })
+        );
       });
     }
 
