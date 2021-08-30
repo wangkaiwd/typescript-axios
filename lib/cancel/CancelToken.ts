@@ -1,4 +1,4 @@
-import { CancelExecutor } from "../types";
+import { Canceler, CancelExecutor } from "../types";
 
 class CancelToken {
   promise: Promise<string>;
@@ -14,6 +14,17 @@ class CancelToken {
       this.reason = reason;
       resolvePromise(reason);
     });
+  }
+
+  static source() {
+    let cancel: Canceler = () => {};
+    const token = new CancelToken((c) => {
+      cancel = c;
+    });
+    return {
+      token,
+      cancel,
+    };
   }
 }
 

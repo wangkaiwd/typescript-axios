@@ -22,9 +22,23 @@ export interface AxiosTransformer {
   (data: any, headers?: any): any;
 }
 
+export type Canceler = (message: string) => void;
+export type CancelExecutor = (cancel: Canceler) => void;
+
 export interface CancelToken {
   promise: Promise<string>;
   reason: string;
+}
+
+export interface CancelTokenSource {
+  token: CancelToken;
+  cancel: Canceler;
+}
+
+export interface CancelTokenStatic {
+  new (executor: CancelExecutor): CancelToken;
+
+  source(): CancelTokenSource;
 }
 
 export interface AxiosRequestConfig {
@@ -79,5 +93,3 @@ export interface AxiosStatic extends AxiosInstance {
 
 export type ResolvedFn<T = any> = (val: T) => T | Promise<T>;
 export type RejectedFn = (error: any) => Promise<any>;
-export type Canceler = (message: string) => void;
-export type CancelExecutor = (cancel: Canceler) => void;
