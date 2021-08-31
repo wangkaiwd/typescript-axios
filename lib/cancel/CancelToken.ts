@@ -1,18 +1,19 @@
-import { Canceler, CancelExecutor } from "../types";
+import { Canceler, CancelExecutor, CancelInstance } from "../types";
+import Cancel from "./cancel";
 
 class CancelToken {
-  promise: Promise<string>;
+  promise: Promise<CancelInstance>;
 
-  reason?: string;
+  reason?: CancelInstance;
 
   constructor(executor: CancelExecutor) {
-    let resolvePromise: (reason: string) => void;
-    this.promise = new Promise<string>((resolve) => {
+    let resolvePromise: (reason: CancelInstance) => void;
+    this.promise = new Promise<CancelInstance>((resolve) => {
       resolvePromise = resolve;
     });
     executor((reason) => {
-      this.reason = reason;
-      resolvePromise(reason);
+      this.reason = new Cancel(reason);
+      resolvePromise(this.reason);
     });
   }
 

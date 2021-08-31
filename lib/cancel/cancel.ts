@@ -1,8 +1,11 @@
-export function cancelToken(): any {
-  let cancel;
-  const p: any = new Promise((resolve) => {
-    cancel = resolve;
-  });
-  p.cancel = cancel;
-  return p;
+export default class Cancel {
+  message?: string;
+
+  constructor(message?: string) {
+    this.message = message;
+  }
+}
+
+export function isCancel(value: any): value is InstanceType<typeof Cancel> {
+  return value instanceof Cancel;
 }

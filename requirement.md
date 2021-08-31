@@ -175,6 +175,9 @@ axios({
 })
 ```
 
+* CancelToken Class
+* isCancel
+
 ### 整体思路
 
 ### 复杂点
@@ -184,3 +187,6 @@ axios({
   * 深度合并
   * 拍平`headers`
 
+### 更多功能
+
+* [XMLHttpRequest.withCredentials](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials)

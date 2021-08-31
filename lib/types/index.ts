@@ -1,3 +1,4 @@
+import Cancel from "../cancel/cancel";
 import Axios from "../core/Axios";
 
 export type Methods =
@@ -25,8 +26,10 @@ export interface AxiosTransformer {
 export type Canceler = (message: string) => void;
 export type CancelExecutor = (cancel: Canceler) => void;
 
+export type CancelInstance = InstanceType<typeof Cancel>;
+
 export interface CancelToken {
-  promise: Promise<string>;
+  promise: Promise<CancelInstance>;
   reason: string;
 }
 
