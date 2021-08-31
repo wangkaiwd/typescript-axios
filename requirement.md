@@ -190,3 +190,4 @@ axios({
 ### 更多功能
 
 * [XMLHttpRequest.withCredentials](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials)
+* xsrf
