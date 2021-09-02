@@ -1,4 +1,4 @@
-import Cancel from "../cancel/cancel";
+import Cancel, { isCancel } from "../cancel/cancel";
 import Axios from "../core/Axios";
 
 export type Methods =
@@ -30,7 +30,11 @@ export type CancelInstance = InstanceType<typeof Cancel>;
 
 export interface CancelToken {
   promise: Promise<CancelInstance>;
-  reason: string;
+  reason?: CancelInstance;
+}
+
+export interface CancelStatic {
+  new (message?: string): CancelInstance;
 }
 
 export interface CancelTokenSource {
@@ -92,6 +96,10 @@ export interface AxiosInstance extends InstanceType<typeof Axios> {
 
 export interface AxiosStatic extends AxiosInstance {
   create(config: AxiosRequestConfig): AxiosInstance;
+
+  CancelToken: CancelTokenStatic;
+  isCancel: typeof isCancel;
+  Cancel: CancelStatic; // why need this property
 }
 
 export type ResolvedFn<T = any> = (val: T) => T | Promise<T>;
