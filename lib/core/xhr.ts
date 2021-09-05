@@ -1,6 +1,11 @@
 import { createError } from "../helpers/error";
 import { parseResponseHeaders } from "../helpers/header";
-import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from "../types";
+import {
+  AxiosPromise,
+  AxiosRequestConfig,
+  AxiosResponse,
+  CancelInstance,
+} from "../types";
 
 export function xhr(config: AxiosRequestConfig): AxiosPromise {
   return new Promise((resolve, reject) => {
@@ -12,13 +17,25 @@ export function xhr(config: AxiosRequestConfig): AxiosPromise {
       timeout,
       responseType,
       cancelToken,
+      withCredentials,
     } = config;
     const request = new XMLHttpRequest();
+    if (cancelToken) {
+      cancelToken.throwIfRequested();
+      cancelToken.promise.then((reason: CancelInstance) => {
+        request.abort();
+        reject(reason);
+      });
+    }
     if (responseType != null) {
       request.responseType = responseType;
     }
     const normalizedMethod = method.toUpperCase();
     request.open(normalizedMethod, url!, true);
+    if (withCredentials) {
+      // default is false
+      request.withCredentials = withCredentials;
+    }
     if (timeout) {
       request.timeout = timeout;
     }
@@ -26,19 +43,6 @@ export function xhr(config: AxiosRequestConfig): AxiosPromise {
       request.setRequestHeader(name, headers[name]);
     });
     request.send(data);
-
-    if (cancelToken) {
-      cancelToken.promise.then((reason: string) => {
-        request.abort();
-        reject(
-          createError({
-            request,
-            config,
-            message: reason,
-          })
-        );
-      });
-    }
 
     function handleResponse(response: AxiosResponse) {
       if (request.status >= 200 && request.status < 300) {

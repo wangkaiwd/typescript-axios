@@ -1,4 +1,4 @@
-import Cancel, { isCancel } from "../cancel/cancel";
+import Cancel, { isCancel } from "../cancel/Cancel";
 import Axios from "../core/Axios";
 
 export type Methods =
@@ -31,6 +31,8 @@ export type CancelInstance = InstanceType<typeof Cancel>;
 export interface CancelToken {
   promise: Promise<CancelInstance>;
   reason?: CancelInstance;
+
+  throwIfRequested(): void;
 }
 
 export interface CancelStatic {
@@ -60,6 +62,7 @@ export interface AxiosRequestConfig {
   transformRequest?: AxiosTransformer | AxiosTransformer[];
   transformResponse?: AxiosTransformer | AxiosTransformer[];
   cancelToken?: CancelToken;
+  withCredentials?: boolean;
 
   [k: string]: any;
 }

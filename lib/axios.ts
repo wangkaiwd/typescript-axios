@@ -1,4 +1,4 @@
-import Cancel, { isCancel } from "./cancel/cancel";
+import Cancel, { isCancel } from "./cancel/Cancel";
 import CancelToken from "./cancel/CancelToken";
 import Axios from "./core/Axios";
 import defaults from "./default";

@@ -178,6 +178,11 @@ axios({
 * CancelToken Class
 * isCancel
 
+#### knowledge points
+
+* the statement after [throw](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) won't
+  be executed
+
 ### 整体思路
 
 ### 复杂点
@@ -191,3 +196,7 @@ axios({
 
 * [XMLHttpRequest.withCredentials](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials)
 * xsrf
+* [same-origin-policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)
+* [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+  * [origin](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin)
+  * [cors http response header](https://fetch.spec.whatwg.org/#http-responses)

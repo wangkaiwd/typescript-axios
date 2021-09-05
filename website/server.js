@@ -130,12 +130,21 @@ function registerConfigRoute() {
   });
 }
 
+function registerCancelRoute() {
+  app.get("/cancel/get", (req, res) => {
+    setTimeout(() => {
+      res.json({ message: "success", code: 0 });
+    }, 2000);
+  });
+}
+
 registerSimpleRoute();
 registerBaseRoute();
 registerErrorRoute();
 registerExtendRoute();
 registerInterceptorRoute();
 registerConfigRoute();
+registerCancelRoute();
 // Serve the files on port 3000.
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!\n`);
