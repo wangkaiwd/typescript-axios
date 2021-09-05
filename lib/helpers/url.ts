@@ -1,5 +1,10 @@
 import { isPlainObject } from "../utils";
 
+interface URLOrigin {
+  protocol: string;
+  host: string;
+}
+
 function encode(url: string): string {
   // transform compiled string to origin
   // https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding
@@ -78,3 +83,24 @@ function buildUrl(url: string, params?: object): string {
 }
 
 export default buildUrl;
+
+// https://stackoverflow.com/a/26434126/11720536
+function resolveULR(url: string): URLOrigin {
+  const link = document.createElement("a");
+  link.setAttribute("href", url);
+  const { protocol, host } = link;
+  return {
+    protocol,
+    host,
+  };
+}
+
+export function isURLSameOrigin(requestURL: string) {
+  const currentURL = window.location.href;
+  const currentOrigin = resolveULR(currentURL);
+  const requestOrigin = resolveULR(requestURL);
+  return (
+    currentOrigin.protocol === requestOrigin.protocol &&
+    currentOrigin.host === requestOrigin.host
+  );
+}

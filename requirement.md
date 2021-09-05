@@ -195,8 +195,8 @@ axios({
 ### 更多功能
 
 * [XMLHttpRequest.withCredentials](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials)
-* xsrf
-* [same-origin-policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)
-* [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
-  * [origin](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin)
-  * [cors http response header](https://fetch.spec.whatwg.org/#http-responses)
+* xsrf: 同域并且设置了`withCredentials`时，在请求头添加`xsrf`相关字段
+  * [same-origin-policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)
+  * [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+    * [origin](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin)
+    * [cors http response header](https://fetch.spec.whatwg.org/#http-responses)
