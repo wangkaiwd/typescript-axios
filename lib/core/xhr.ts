@@ -1,5 +1,7 @@
+import cookie from "../helpers/cookie";
 import { createError } from "../helpers/error";
 import { parseResponseHeaders } from "../helpers/header";
+import { isURLSameOrigin } from "../helpers/url";
 import {
   AxiosPromise,
   AxiosRequestConfig,
@@ -18,6 +20,8 @@ export function xhr(config: AxiosRequestConfig): AxiosPromise {
       responseType,
       cancelToken,
       withCredentials,
+      xsrfCookieName,
+      xsrfHeaderName,
     } = config;
     const request = new XMLHttpRequest();
     if (cancelToken) {
@@ -35,6 +39,15 @@ export function xhr(config: AxiosRequestConfig): AxiosPromise {
     if (withCredentials) {
       // default is false
       request.withCredentials = withCredentials;
+    }
+    // xsrf
+    // request should be made using credentials such as cookie
+    // or same origin request
+    if (withCredentials || isURLSameOrigin(url!)) {
+      const xsrfValue = cookie.read(xsrfCookieName!);
+      if (xsrfValue && xsrfHeaderName) {
+        headers[xsrfHeaderName] = xsrfValue;
+      }
     }
     if (timeout) {
       request.timeout = timeout;

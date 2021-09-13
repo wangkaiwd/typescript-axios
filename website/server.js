@@ -11,9 +11,20 @@ const compiler = webpack(config);
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js
 // configuration file as a base.
 app.use(webpackDevMiddleware(compiler));
-app.use(express.static(__dirname));
+app.use(
+  express.static(__dirname, {
+    // index.html request source will set cookie by server, subsequent request will add cookie request header
+    setHeaders(res) {
+      res.cookie("test-cookie-name", "token123");
+    },
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+const successResult = {
+  message: "success",
+  code: 0,
+};
 
 function registerSimpleRoute() {
   app.get("/simple/get", (req, res) => {
@@ -138,6 +149,12 @@ function registerCancelRoute() {
   });
 }
 
+function registerMoreRoute() {
+  app.get("/more/get", (req, res) => {
+    res.json(successResult);
+  });
+}
+
 registerSimpleRoute();
 registerBaseRoute();
 registerErrorRoute();
@@ -145,6 +162,7 @@ registerExtendRoute();
 registerInterceptorRoute();
 registerConfigRoute();
 registerCancelRoute();
+registerMoreRoute();
 // Serve the files on port 3000.
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!\n`);

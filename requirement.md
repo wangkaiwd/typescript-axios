@@ -161,6 +161,7 @@
 
 * [`XMLHttpRequest.abort()`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/abort)
 * [how to cancel a pending promise](https://github.com/wangkaiwd/node-core/blob/main/00.promise/promise-abort.js)
+  * [Cancel a vanilla ECMAScript 6 Promise chain](https://stackoverflow.com/questions/29478751/cancel-a-vanilla-ecmascript-6-promise-chain)
 
 难点：
 
