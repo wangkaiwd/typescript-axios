@@ -22,6 +22,8 @@ export function xhr(config: AxiosRequestConfig): AxiosPromise {
       withCredentials,
       xsrfCookieName,
       xsrfHeaderName,
+      onDownloadProgress,
+      onUploadProgress,
     } = config;
     const request = new XMLHttpRequest();
     if (cancelToken) {
@@ -33,6 +35,22 @@ export function xhr(config: AxiosRequestConfig): AxiosPromise {
     }
     if (responseType != null) {
       request.responseType = responseType;
+    }
+    if (onDownloadProgress) {
+      request.addEventListener(
+        "progress",
+        (e: ProgressEvent<XMLHttpRequestEventTarget>) => {
+          onDownloadProgress(e);
+        }
+      );
+    }
+    if (onUploadProgress) {
+      request.upload.addEventListener(
+        "progress",
+        (e: ProgressEvent<XMLHttpRequestEventTarget>) => {
+          onUploadProgress(e);
+        }
+      );
     }
     const normalizedMethod = method.toUpperCase();
     request.open(normalizedMethod, url!, true);
@@ -52,6 +70,7 @@ export function xhr(config: AxiosRequestConfig): AxiosPromise {
     if (timeout) {
       request.timeout = timeout;
     }
+    console.log("headers", headers, config);
     Object.keys(headers).forEach((name) => {
       request.setRequestHeader(name, headers[name]);
     });

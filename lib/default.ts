@@ -5,12 +5,7 @@ import { transformRequest, transformResponseData } from "./helpers/data";
 const defaults: AxiosRequestConfig = {
   method: "GET",
   timeout: 0,
-  headers: {
-    // can config for specific method, and will be flatten before send request
-    common: {
-      Accept: "application/json, text/plain, */*",
-    },
-  },
+  headers: {},
   withCredentials: false,
   xsrfCookieName: "XSRF-TOKEN",
   xsrfHeaderName: "X-XSRF-TOKEN",
@@ -37,9 +32,7 @@ methodsWithoutData.forEach((method) => {
 const methodsWithData = ["post", "put", "patch"];
 
 methodsWithData.forEach((method) => {
-  defaults.headers![method] = {
-    "Content-Type": "application/x-www-form-urlencoded",
-  };
+  defaults.headers![method] = {};
 });
 
 export default defaults;

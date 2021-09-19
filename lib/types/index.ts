@@ -50,6 +50,8 @@ export interface CancelTokenStatic {
   source(): CancelTokenSource;
 }
 
+type ProgressHandler = (e: ProgressEvent<XMLHttpRequestEventTarget>) => void;
+
 export interface AxiosRequestConfig {
   url?: string;
   method?: Methods;
@@ -65,6 +67,8 @@ export interface AxiosRequestConfig {
   withCredentials?: boolean;
   xsrfCookieName?: string;
   xsrfHeaderName?: string;
+  onUploadProgress?: ProgressHandler;
+  onDownloadProgress?: ProgressHandler;
 
   [k: string]: any;
 }
@@ -100,7 +104,7 @@ export interface AxiosInstance extends InstanceType<typeof Axios> {
 }
 
 export interface AxiosStatic extends AxiosInstance {
-  create(config: AxiosRequestConfig): AxiosInstance;
+  create(config?: AxiosRequestConfig): AxiosInstance;
 
   CancelToken: CancelTokenStatic;
   isCancel: typeof isCancel;

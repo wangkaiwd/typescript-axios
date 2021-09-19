@@ -1,8 +1,8 @@
-import { isPlainObject } from '../utils';
-import { IHeaders, Methods } from '../types';
-import { deepMerge } from './utils';
+import { isFormData, isPlainObject } from "../utils";
+import { IHeaders, Methods } from "../types";
+import { deepMerge } from "./utils";
 
-function normalizeHeadersName (headers: any, normalizedName: 'Content-Type') {
+function normalizeHeadersName(headers: any, normalizedName: "Content-Type") {
   if (!headers) {
     return;
   }
@@ -17,27 +17,30 @@ function normalizeHeadersName (headers: any, normalizedName: 'Content-Type') {
   });
 }
 
-export function processHeaders (headers: any, data: any): IHeaders {
-  normalizeHeadersName(headers, 'Content-Type');
+export function processHeaders(headers: any, data: any): IHeaders {
+  normalizeHeadersName(headers, "Content-Type");
+  if (isFormData(data)) {
+    delete headers["Content-Type"];
+  }
   if (!headers) {
     headers = {};
   }
   if (isPlainObject(data)) {
     // headers default is empty object ?
-    if (!headers['Content-Type']) {
+    if (!headers["Content-Type"]) {
       // If headers not have Content-Type property, set it to application/json
-      headers['Content-Type'] = 'application/json; charset=utf-8';
+      headers["Content-Type"] = "application/json; charset=utf-8";
     }
   }
   return headers;
 }
 
-export function parseResponseHeaders (request: XMLHttpRequest): IHeaders {
+export function parseResponseHeaders(request: XMLHttpRequest): IHeaders {
   const responseStr = request.getAllResponseHeaders();
-  const array = responseStr.split('\r\n');
+  const array = responseStr.split("\r\n");
   return array.reduce((memo: IHeaders, item) => {
     if (item) {
-      const [key, val] = item.split(': ');
+      const [key, val] = item.split(": ");
       memo[key] = val;
     }
     return memo;
@@ -46,12 +49,21 @@ export function parseResponseHeaders (request: XMLHttpRequest): IHeaders {
 
 // common: all
 // method verb: supply specific http request
-export function flattenHeaders (headers: IHeaders, method: Methods) {
+export function flattenHeaders(headers: IHeaders, method: Methods) {
   const { common = {} } = headers;
   // return a new object
   headers = deepMerge(common, headers[method] || {}, headers);
-  const methodsToDelete = ['get', 'post', 'option', 'delete', 'put', 'patch', 'head', 'common'];
-  methodsToDelete.forEach(method => {
+  const methodsToDelete = [
+    "get",
+    "post",
+    "option",
+    "delete",
+    "put",
+    "patch",
+    "head",
+    "common",
+  ];
+  methodsToDelete.forEach((method) => {
     delete headers[method];
   });
   return headers;

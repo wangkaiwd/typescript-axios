@@ -1,10 +1,14 @@
 const express = require("express");
 const webpack = require("webpack");
+const multer = require("multer");
 const webpackDevMiddleware = require("webpack-dev-middleware");
+const path = require("path");
+const config = require("./webpack.config");
 
 const PORT = 3000;
 const app = express();
-const config = require("./webpack.config");
+
+const upload = multer({ dest: path.resolve(__dirname, "uploads/") });
 
 const compiler = webpack(config);
 
@@ -21,6 +25,7 @@ app.use(
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 const successResult = {
   message: "success",
   code: 0,
@@ -152,6 +157,12 @@ function registerCancelRoute() {
 function registerMoreRoute() {
   app.get("/more/get", (req, res) => {
     res.json(successResult);
+  });
+  app.post("/more/upload", upload.single("file"), (req, res) => {
+    res.json({
+      ...successResult,
+      ...req.file,
+    });
   });
 }
 
