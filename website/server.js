@@ -3,6 +3,7 @@ const webpack = require("webpack");
 const multer = require("multer");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 const path = require("path");
+const fs = require("fs");
 const config = require("./webpack.config");
 
 const PORT = 3000;
@@ -162,6 +163,14 @@ function registerMoreRoute() {
     res.json({
       ...successResult,
       ...req.file,
+    });
+  });
+  app.post("/more/download", (req, res) => {
+    fs.readFile(path.resolve(__dirname, "index.html"), (err, data) => {
+      if (!err) {
+        res.end(data);
+      }
+      res.end();
     });
   });
 }

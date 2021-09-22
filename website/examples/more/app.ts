@@ -55,5 +55,14 @@ file.addEventListener("change", (e) => {
 });
 // download
 downloadButton.addEventListener("click", () => {
-  instance.get("https://w.wallhaven.cc/full/3z/wallhaven-3z32j3.jpg");
+  instance.post("/more/download", { responseType: "blob" }).then((response) => {
+    console.log("response", response);
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "index.html");
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  });
 });
