@@ -30,15 +30,27 @@ const downloadButton = document.getElementsByClassName("download")[0];
 
 function loadProgress() {
   function progressHandler(e: ProgressEvent<XMLHttpRequestEventTarget>) {
-    console.log(e);
+    console.log("upload", e);
+    // console.log(e);
+    // const rate = e.loaded / e.total;
+  }
+
+  function download(e: ProgressEvent<XMLHttpRequestEventTarget>) {
     const rate = e.loaded / e.total;
+    console.log("rate", rate);
     NProgress.set(rate);
   }
 
   instance.interceptors.request.use((config) => {
-    config.onDownloadProgress = progressHandler;
+    NProgress.start();
+    config.onDownloadProgress = download;
     config.onUploadProgress = progressHandler;
     return config;
+  });
+  instance.interceptors.response.use((res) => {
+    NProgress.done();
+    NProgress.remove();
+    return res;
   });
 }
 
@@ -54,15 +66,18 @@ file.addEventListener("change", (e) => {
   instance.post("/more/upload", formData);
 });
 // download
+// todo: why download video can't play ?
 downloadButton.addEventListener("click", () => {
-  instance.post("/more/download", { responseType: "blob" }).then((response) => {
-    console.log("response", response);
-    const url = window.URL.createObjectURL(new Blob([response.data]));
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", "index.html");
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-  });
+  instance
+    .post("/more/download", { responseType: "stream" })
+    .then((response) => {
+      console.log("response", response);
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "test-video.mp4");
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    });
 });

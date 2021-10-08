@@ -170,7 +170,7 @@
 ```js
 let cancel = undefined
 axios({
-  url: 'xxx', cancelFn: function(c) { // c = xhr.abort.bind(xhr)
+  url: 'xxx', cancelFn: function (c) { // c = xhr.abort.bind(xhr)
     cancel = c
   }
 })
@@ -201,3 +201,7 @@ axios({
   * [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
     * [origin](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin)
     * [cors http response header](https://fetch.spec.whatwg.org/#http-responses)
+
+#### 上传和下载
+
+* 下载功能需要服务端支持，否则`total`为0

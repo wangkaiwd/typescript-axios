@@ -1,15 +1,15 @@
-const express = require("express");
-const webpack = require("webpack");
-const multer = require("multer");
-const webpackDevMiddleware = require("webpack-dev-middleware");
-const path = require("path");
-const fs = require("fs");
-const config = require("./webpack.config");
+const express = require('express');
+const webpack = require('webpack');
+const multer = require('multer');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const path = require('path');
+const fs = require('fs');
+const config = require('./webpack.config');
 
 const PORT = 3000;
 const app = express();
 
-const upload = multer({ dest: path.resolve(__dirname, "uploads/") });
+const upload = multer({ dest: path.resolve(__dirname, 'uploads/') });
 
 const compiler = webpack(config);
 
@@ -19,8 +19,8 @@ app.use(webpackDevMiddleware(compiler));
 app.use(
   express.static(__dirname, {
     // index.html request source will set cookie by server, subsequent request will add cookie request header
-    setHeaders(res) {
-      res.cookie("test-cookie-name", "token123");
+    setHeaders (res) {
+      res.cookie('test-cookie-name', 'token123');
     },
   })
 );
@@ -28,32 +28,32 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const successResult = {
-  message: "success",
+  message: 'success',
   code: 0,
 };
 
-function registerSimpleRoute() {
-  app.get("/simple/get", (req, res) => {
+function registerSimpleRoute () {
+  app.get('/simple/get', (req, res) => {
     res.json({
-      msg: "Hello World!",
+      msg: 'Hello World!',
     });
   });
 }
 
-function registerBaseRoute() {
-  app.get("/base/get", (req, res) => {
+function registerBaseRoute () {
+  app.get('/base/get', (req, res) => {
     res.json(req.query);
   });
 
-  app.post("/base/post", (req, res) => {
+  app.post('/base/post', (req, res) => {
     res.json(req.body);
   });
-  app.post("/base/buffer", (req, res) => {
+  app.post('/base/buffer', (req, res) => {
     const message = [];
-    req.on("data", (chunk) => {
+    req.on('data', (chunk) => {
       message.push(chunk);
     });
-    req.on("end", () => {
+    req.on('end', () => {
       const buffer = Buffer.concat(message);
       // buffer.toString
       // buffer.toJSON
@@ -62,116 +62,129 @@ function registerBaseRoute() {
   });
 }
 
-function registerErrorRoute() {
-  app.get("/error/get", (req, res) => {
+function registerErrorRoute () {
+  app.get('/error/get', (req, res) => {
     if (Math.random() > 0.5) {
       res.json({
-        msg: "hello world",
+        msg: 'hello world',
       });
     } else {
       res.status(500);
       res.end();
     }
   });
-  app.get("/error/timeout", (req, res) => {
+  app.get('/error/timeout', (req, res) => {
     setTimeout(() => {
       res.json({
-        msg: "Hello World!",
+        msg: 'Hello World!',
       });
     }, 3000);
   });
 }
 
-function registerExtendRoute() {
-  app.post("/extend/post", (req, res) => {
+function registerExtendRoute () {
+  app.post('/extend/post', (req, res) => {
     res.json({
-      msg: "extend post",
+      msg: 'extend post',
       result: req.body,
     });
   });
 
-  app.get("/extend/get", (req, res) => {
+  app.get('/extend/get', (req, res) => {
     res.json({
-      msg: "extend get",
+      msg: 'extend get',
       result: req.query,
     });
   });
 
-  app.head("/extend/head", (req, res) => {
+  app.head('/extend/head', (req, res) => {
     res.json({
-      msg: "extend head",
+      msg: 'extend head',
       result: req.query,
     });
   });
 
-  app.delete("/extend/delete", (req, res) => {
+  app.delete('/extend/delete', (req, res) => {
     res.json({
-      msg: "extend delete",
+      msg: 'extend delete',
       result: req.body,
     });
   });
 
-  app.options("/extend/options", (req, res) => {
+  app.options('/extend/options', (req, res) => {
     res.json({
-      msg: "extend options",
+      msg: 'extend options',
       result: req.body,
     });
   });
 
-  app.put("/extend/put", (req, res) => {
+  app.put('/extend/put', (req, res) => {
     res.json({
-      msg: "extend put",
+      msg: 'extend put',
       result: req.body,
     });
   });
 
-  app.patch("/extend/patch", (req, res) => {
+  app.patch('/extend/patch', (req, res) => {
     res.json({
-      msg: "extend patch",
+      msg: 'extend patch',
       result: req.body,
     });
   });
 }
 
-function registerInterceptorRoute() {
-  app.post("/interceptor/demo", (req, res) => {
+function registerInterceptorRoute () {
+  app.post('/interceptor/demo', (req, res) => {
     res.json({
-      msg: "hello",
+      msg: 'hello',
     });
   });
 }
 
-function registerConfigRoute() {
-  app.post("/config/post", (req, res) => {
-    res.json({ message: "success" });
+function registerConfigRoute () {
+  app.post('/config/post', (req, res) => {
+    res.json({ message: 'success' });
   });
 }
 
-function registerCancelRoute() {
-  app.get("/cancel/get", (req, res) => {
+function registerCancelRoute () {
+  app.get('/cancel/get', (req, res) => {
     setTimeout(() => {
-      res.json({ message: "success", code: 0 });
+      res.json({ message: 'success', code: 0 });
     }, 2000);
   });
 }
 
-function registerMoreRoute() {
-  app.get("/more/get", (req, res) => {
+function registerMoreRoute () {
+  app.get('/more/get', (req, res) => {
     res.json(successResult);
   });
-  app.post("/more/upload", upload.single("file"), (req, res) => {
+  app.post('/more/upload', upload.single('file'), (req, res) => {
     res.json({
       ...successResult,
       ...req.file,
     });
   });
-  app.post("/more/download", (req, res) => {
-    fs.readFile(path.resolve(__dirname, "index.html"), (err, data) => {
+  app.post('/more/download', (req, res) => {
+    // download with stream
+    const filePath = path.resolve(__dirname, 'test-files/test-video.mov');
+    fs.stat(filePath, (err, stats) => {
       if (!err) {
-        res.end(data);
+        const length = stats.size;
+        const basename = path.basename(filePath);
+        // Content-Disposition
+        // Content-Type
+        res.set('Content-Disposition', `attachment; filename=${basename}`);
+        res.set('Content-Type', 'video/quicktime');
+        // must set content-length so that client progress event can get total file bytes count
+        res.set('Content-length', String(length));
+        const readStream = fs.createReadStream(filePath);
+        readStream.pipe(res);
       }
-      res.end();
     });
+
+    // https://stackoverflow.com/questions/7288814/download-a-file-from-nodejs-server-using-express
+    // res.download(filePath);
   });
 }
 
