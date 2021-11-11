@@ -53,6 +53,7 @@ export interface CancelTokenStatic {
 type ProgressHandler = (e: ProgressEvent<XMLHttpRequestEventTarget>) => void;
 
 export interface AxiosRequestConfig {
+  baseURL?: string;
   url?: string;
   method?: Methods;
   data?: any;

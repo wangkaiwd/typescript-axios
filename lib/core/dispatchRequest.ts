@@ -1,12 +1,16 @@
 import { flattenHeaders } from "../helpers/header";
-import buildUrl from "../helpers/url";
+import buildUrl, { combineUrl, isAbsoluteUrl } from "../helpers/url";
 import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from "../types";
 import { xhr } from "./xhr";
 import { transform } from "./transform";
 
 function processConfig(config: AxiosRequestConfig): void {
   // merge config
-  const { url = "", params, data, headers, method } = config;
+  const { params, data, headers, method, baseURL } = config;
+  let { url = "" } = config;
+  if (!isAbsoluteUrl(url) && baseURL) {
+    url = combineUrl(baseURL, url);
+  }
   config.url = buildUrl(url, params);
   // why headers not as a return value and pass next function
   config.data = transform(data, headers, config.transformRequest);

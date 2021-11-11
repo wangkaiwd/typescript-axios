@@ -1,8 +1,11 @@
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import axios from "../../../lib";
-// document.cookie = "a=b; Max-Age=1000";
 
+import "./baseUrl";
+
+document.cookie = "a=b; Max-Age=1000";
+//
 // axios
 //   .get("http://localhost:3001/more/credentials", { withCredentials: true })
 //   .then((res) => {
@@ -14,7 +17,7 @@ import axios from "../../../lib";
 //   .then((res) => {
 //     console.log("res", res);
 //   });
-
+//
 // axios
 //   .get("/more/get", {
 //     xsrfCookieName: "test-cookie-name",
