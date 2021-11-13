@@ -8,7 +8,8 @@
     "cm": "cz",
     "genlog": "node scripts/gen-change-log.js",
     "server": "nodemon website/server.js",
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -46,6 +47,7 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
+    "@types/jest": "^27.0.2",
     "@types/nprogress": "^0.2.0",
     "@typescript-eslint/eslint-plugin": "^4.25.0",
     "@typescript-eslint/parser": "^4.25.0",
@@ -63,6 +65,7 @@
     "nodemon": "^2.0.9",
     "prettier": "2.3.0",
     "style-loader": "^3.2.1",
+    "ts-jest": "^27.0.7",
     "ts-loader": "^9.2.3",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",
