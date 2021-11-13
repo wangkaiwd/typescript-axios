@@ -170,7 +170,7 @@
 ```js
 let cancel = undefined
 axios({
-  url: 'xxx', cancelFn: function (c) { // c = xhr.abort.bind(xhr)
+  url: 'xxx', cancelFn: function(c) { // c = xhr.abort.bind(xhr)
     cancel = c
   }
 })
@@ -205,3 +205,7 @@ axios({
 #### 上传和下载
 
 * 下载功能需要服务端支持，否则`total`为0
+
+### Authorization
+
+* [basic authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization#basic_authentication)

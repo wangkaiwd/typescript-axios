@@ -1,19 +1,20 @@
-import cookie from '../helpers/cookie';
-import { createError } from '../helpers/error';
-import { parseResponseHeaders } from '../helpers/header';
-import { isURLSameOrigin } from '../helpers/url';
+import cookie from "../helpers/cookie";
+import { createError } from "../helpers/error";
+import { parseResponseHeaders } from "../helpers/header";
+import { isURLSameOrigin } from "../helpers/url";
 import {
   AxiosPromise,
   AxiosRequestConfig,
   AxiosResponse,
   CancelInstance,
-} from '../types';
+} from "../types";
 
-export function xhr (config: AxiosRequestConfig): AxiosPromise {
+export function xhr(config: AxiosRequestConfig): AxiosPromise {
   return new Promise((resolve, reject) => {
     const {
+      auth,
       data = null,
-      method = 'GET',
+      method = "GET",
       url,
       headers = {},
       timeout,
@@ -29,7 +30,7 @@ export function xhr (config: AxiosRequestConfig): AxiosPromise {
     const normalizedMethod = method.toUpperCase();
     request.open(normalizedMethod, url!, true);
 
-    function handleResponse (response: AxiosResponse) {
+    function handleResponse(response: AxiosResponse) {
       if (request.status >= 200 && request.status < 300) {
         resolve(response);
       } else {
@@ -44,7 +45,7 @@ export function xhr (config: AxiosRequestConfig): AxiosPromise {
       }
     }
 
-    function configureRequest () {
+    function configureRequest() {
       if (responseType != null) {
         request.responseType = responseType;
       }
@@ -57,14 +58,14 @@ export function xhr (config: AxiosRequestConfig): AxiosPromise {
       }
     }
 
-    function bindEvents () {
+    function bindEvents() {
       if (onDownloadProgress) {
-        request.addEventListener('progress', onDownloadProgress);
+        request.addEventListener("progress", onDownloadProgress);
       }
       if (onUploadProgress) {
-        request.upload.addEventListener('progress', onUploadProgress);
+        request.upload.addEventListener("progress", onUploadProgress);
       }
-      request.addEventListener('load', () => {
+      request.addEventListener("load", () => {
         const responseHeaders = parseResponseHeaders(request);
         const response = {
           status: request.status,
@@ -76,28 +77,28 @@ export function xhr (config: AxiosRequestConfig): AxiosPromise {
         };
         handleResponse(response);
       });
-      request.addEventListener('error', () => {
+      request.addEventListener("error", () => {
         reject(
           createError({
             request,
             config,
-            message: 'Network Error',
+            message: "Network Error",
           })
         );
       });
-      request.addEventListener('timeout', () => {
+      request.addEventListener("timeout", () => {
         reject(
           createError({
             request,
             config,
-            code: 'ECONNABORTED',
+            code: "ECONNABORTED",
             message: `Timeout of ${timeout} ms exceeded`,
           })
         );
       });
     }
 
-    function processHeader () {
+    function processHeader() {
       // xsrf
       // request should be made using credentials such as cookie
       // or same origin request
@@ -110,9 +111,15 @@ export function xhr (config: AxiosRequestConfig): AxiosPromise {
       Object.keys(headers).forEach((name) => {
         request.setRequestHeader(name, headers[name]);
       });
+      if (auth) {
+        const basicAuthentication = `Basic ${btoa(
+          `${auth.username}:${auth.password}`
+        )}`;
+        request.setRequestHeader("Authorization", basicAuthentication);
+      }
     }
 
-    function processCancel () {
+    function processCancel() {
       if (cancelToken) {
         cancelToken.throwIfRequested();
         cancelToken.promise.then((reason: CancelInstance) => {

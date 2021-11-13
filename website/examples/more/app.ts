@@ -2,7 +2,8 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import axios from "../../../lib";
 
-import "./baseUrl";
+// import "./baseUrl";
+import "./auth";
 
 document.cookie = "a=b; Max-Age=1000";
 //

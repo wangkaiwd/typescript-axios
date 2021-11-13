@@ -9,5 +9,6 @@ export default {
   coverageDirectory: "coverage",
   preset: "ts-jest",
   testEnvironment: "jsdom",
+  collectCoverageFrom: ["lib/**/*.ts"],
   watchPathIgnorePatterns: ["/node_modules/", "/build/"],
 };
