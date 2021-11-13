@@ -9,7 +9,8 @@
     "genlog": "node scripts/gen-change-log.js",
     "server": "nodemon website/server.js",
     "build": "tsc -p tsconfig.json",
-    "test": "jest"
+    "test": "jest --coverage=false",
+    "test:coverage": "jest"
   },
   "repository": {
     "type": "git",
@@ -67,6 +68,7 @@
     "style-loader": "^3.2.1",
     "ts-jest": "^27.0.7",
     "ts-loader": "^9.2.3",
+    "ts-node": "^10.4.0",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",
     "webpack-dev-middleware": "^3.7.3",
