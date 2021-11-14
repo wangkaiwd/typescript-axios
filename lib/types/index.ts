@@ -23,6 +23,10 @@ export interface AxiosTransformer {
   (data: any, headers?: any): any;
 }
 
+export interface PlainObject {
+  [k: string]: any;
+}
+
 export type Canceler = (message: string) => void;
 export type CancelExecutor = (cancel: Canceler) => void;
 
@@ -57,13 +61,16 @@ export interface AxiosBasicCredentials {
   password: string;
 }
 
+export type AxiosRequestParams = PlainObject | URLSearchParams;
+export type AxiosParamsSerializer = (params: AxiosRequestParams) => string;
+
 export interface AxiosRequestConfig {
   auth?: AxiosBasicCredentials;
   baseURL?: string;
   url?: string;
   method?: Methods;
   data?: any;
-  params?: object;
+  params?: AxiosRequestParams; // can object or URLSearchParams
   headers?: IHeaders;
   timeout?: number;
   // eslint-disable-next-line no-undef
@@ -76,6 +83,8 @@ export interface AxiosRequestConfig {
   xsrfHeaderName?: string;
   onUploadProgress?: ProgressHandler;
   onDownloadProgress?: ProgressHandler;
+  validateStatus?: (status: number) => boolean | null;
+  paramsSerializer?: AxiosParamsSerializer;
 
   [k: string]: any;
 }
@@ -116,6 +125,8 @@ export interface AxiosStatic extends AxiosInstance {
   CancelToken: CancelTokenStatic;
   isCancel: typeof isCancel;
   Cancel: CancelStatic; // why need this property
+  all: <T>(promises: (Promise<T> | T)[]) => Promise<T[]>;
+  spread: <T, R>(cb: (...args: T[]) => R) => (arr: T[]) => R;
 }
 
 export type ResolvedFn<T = any> = (val: T) => T | Promise<T>;

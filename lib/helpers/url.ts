@@ -1,4 +1,5 @@
-import { isPlainObject } from "../utils";
+import { AxiosParamsSerializer, AxiosRequestParams } from "../types";
+import { isPlainObject, isURLSearchParams } from "../utils";
 
 interface URLOrigin {
   protocol: string;
@@ -71,11 +72,22 @@ function joinParams(params: object): string {
   return parts.join("&");
 }
 
-function buildUrl(url: string, params?: object): string {
+function buildUrl(
+  url: string,
+  params?: AxiosRequestParams,
+  paramsSerializer?: AxiosParamsSerializer
+): string {
   if (!params) {
     return url;
   }
-  const queryString = joinParams(params);
+  let queryString = "";
+  if (paramsSerializer) {
+    queryString = paramsSerializer(params);
+  } else if (isURLSearchParams(params)) {
+    queryString = params.toString();
+  } else {
+    queryString = joinParams(params);
+  }
   if (!queryString) {
     return url;
   }

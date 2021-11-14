@@ -12,6 +12,10 @@ export function isUndefined(value: any): value is undefined {
   return typeof value === "undefined";
 }
 
-export function isFormData(val: any): boolean {
-  return val instanceof FormData;
+export function isFormData(value: any): value is FormData {
+  return value instanceof FormData;
+}
+
+export function isURLSearchParams(value: any): value is URLSearchParams {
+  return value instanceof URLSearchParams;
 }

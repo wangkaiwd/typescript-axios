@@ -1,10 +1,10 @@
 import Cancel, { isCancel } from "./cancel/Cancel";
 import CancelToken from "./cancel/CancelToken";
 import Axios from "./core/Axios";
+import { mergeConfig } from "./core/mergeConfig";
 import defaults from "./default";
 import { extend } from "./helpers/extend";
 import { AxiosRequestConfig, AxiosStatic } from "./types";
-import { mergeConfig } from "./core/mergeConfig";
 
 function createInstance(config: AxiosRequestConfig): AxiosStatic {
   const context = new Axios(config);
@@ -21,5 +21,13 @@ axios.create = function (config = {}) {
 axios.CancelToken = CancelToken;
 axios.isCancel = isCancel;
 axios.Cancel = Cancel;
+axios.all = function (promises) {
+  return Promise.all(promises);
+};
+axios.spread = function (cb) {
+  return function wrap(responses) {
+    return cb(...responses);
+  };
+};
 
 export default axios;

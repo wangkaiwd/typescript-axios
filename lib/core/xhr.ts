@@ -25,13 +25,14 @@ export function xhr(config: AxiosRequestConfig): AxiosPromise {
       xsrfHeaderName,
       onDownloadProgress,
       onUploadProgress,
+      validateStatus,
     } = config;
     const request = new XMLHttpRequest();
     const normalizedMethod = method.toUpperCase();
     request.open(normalizedMethod, url!, true);
 
     function handleResponse(response: AxiosResponse) {
-      if (request.status >= 200 && request.status < 300) {
+      if (!validateStatus || validateStatus!(response.status)) {
         resolve(response);
       } else {
         reject(

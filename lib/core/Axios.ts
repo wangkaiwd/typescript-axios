@@ -1,3 +1,4 @@
+import buildUrl from "../helpers/url";
 import dispatchRequest from "./dispatchRequest";
 import {
   AxiosPromise,
@@ -145,5 +146,13 @@ export default class Axios {
       url,
       method: "patch",
     });
+  }
+
+  getUri(config?: AxiosRequestConfig): string {
+    const { url, params, paramsSerializer } = mergeConfig(
+      this.defaults,
+      config || {}
+    );
+    return buildUrl(url!, params, paramsSerializer);
   }
 }
