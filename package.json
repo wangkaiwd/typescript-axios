@@ -1,6 +1,6 @@
 {
   "name": "@ppwd/axios",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "http request library",
   "main": "build/index.js",
   "scripts": {
@@ -10,7 +10,8 @@
     "server": "nodemon website/server.js",
     "build": "tsc -p tsconfig.json",
     "test": "jest --coverage=false",
-    "test:coverage": "jest"
+    "test:coverage": "jest",
+    "publish": "tsc && npm publish"
   },
   "repository": {
     "type": "git",
