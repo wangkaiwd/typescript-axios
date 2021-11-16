@@ -209,3 +209,18 @@ axios({
 ### Authorization
 
 * [basic authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization#basic_authentication)
+
+### 打包
+
+#### webpack
+
+* [author library](https://webpack.js.org/guides/author-libraries/)
+
+#### rollup
+
+* [Quick start](https://rollupjs.org/guide/en/#quick-start)
+* [module field of package.json](https://stackoverflow.com/questions/42708484/what-is-the-module-package-json-field-for)
+
+### 发布
+
+* write a auto release script

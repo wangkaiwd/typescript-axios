@@ -66,6 +66,7 @@
     "lint-staged": "^11.0.0",
     "nodemon": "^2.0.9",
     "prettier": "2.3.0",
+    "rollup": "^2.60.0",
     "style-loader": "^3.2.1",
     "ts-jest": "^27.0.7",
     "ts-loader": "^9.2.3",
