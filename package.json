@@ -11,7 +11,7 @@
     "build": "tsc -p tsconfig.json",
     "test": "jest --coverage=false",
     "test:coverage": "jest",
-    "publish": "tsc && npm publish"
+    "release": "npm version patch && tsc && npm publish"
   },
   "repository": {
     "type": "git",
