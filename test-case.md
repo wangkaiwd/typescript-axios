@@ -5,7 +5,7 @@
 
 ### knowledge
 
-> [vue-next ts config file](https://github.com/vuejs/vue-next/blob/master/jest.config.js)
+> [vue-next jest config file](https://github.com/vuejs/vue-next/blob/master/jest.config.js)
 
 * create `__tests__` under project root project
 * test file will has suffix `.spec` compare with origin source code file
