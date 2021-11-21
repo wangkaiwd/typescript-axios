@@ -7,19 +7,24 @@ export default {
   input: `lib/index.ts`,
   // foremost
   output: [
+    // {
+    //   file: path.resolve(__dirname, pkg.main),
+    //   exports: "auto",
+    //   format: "cjs",
+    // },
+    // {
+    //   file: path.resolve(__dirname, pkg.module),
+    //   format: "es",
+    // },
+    // {
+    //   file: path.resolve(__dirname, "build/browser.js"),
+    //   name: "axios",
+    //   format: "iife",
+    // },
     {
       file: path.resolve(__dirname, pkg.main),
-      exports: "auto",
-      format: "cjs",
-    },
-    {
-      file: path.resolve(__dirname, pkg.module),
-      format: "es",
-    },
-    {
-      file: path.resolve(__dirname, pkg.browser),
       name: "axios",
-      format: "iife",
+      format: "umd",
     },
   ],
   // need watch ?
