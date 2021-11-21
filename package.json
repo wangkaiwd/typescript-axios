@@ -2,13 +2,15 @@
   "name": "@ppwd/axios",
   "version": "0.0.6",
   "description": "http request library",
-  "main": "build/index.js",
+  "main": "build/axios.cjs.js",
+  "module": "build/axios.es.js",
+  "browser": "build/axios.browser.js",
   "scripts": {
     "pre-commit": "lint-staged",
     "cm": "cz",
     "genlog": "node scripts/gen-change-log.js",
     "server": "nodemon website/server.js",
-    "build": "tsc -p tsconfig.json",
+    "build": "rollup -c rollup.config.js",
     "test": "jest --coverage=false",
     "test:coverage": "jest",
     "release": "npm version patch && tsc && npm publish"
@@ -49,6 +51,7 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
+    "@rollup/plugin-node-resolve": "^13.0.6",
     "@types/jest": "^27.0.2",
     "@types/nprogress": "^0.2.0",
     "@typescript-eslint/eslint-plugin": "^4.25.0",
@@ -67,6 +70,7 @@
     "nodemon": "^2.0.9",
     "prettier": "2.3.0",
     "rollup": "^2.60.0",
+    "rollup-plugin-typescript2": "^0.31.0",
     "style-loader": "^3.2.1",
     "ts-jest": "^27.0.7",
     "ts-loader": "^9.2.3",

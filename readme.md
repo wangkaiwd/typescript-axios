@@ -43,6 +43,28 @@ npx tsc --init
 * 目前可以直接在`chrome`浏览器中调试
 * 如何使用编辑器断点调试源代码？
 
+#### 在其它项目中调试
+
+* [npm link](https://docs.npmjs.com/cli/v8/commands/npm-link)
+* [how do I uninstall a package installed using npm link](https://stackoverflow.com/questions/19094630/how-do-i-uninstall-a-package-installed-using-npm-link)
+  * cancel npm link
+
+into library directory and execute follow command line:
+
+```shell
+npm link
+```
+
+then into your project directory:
+
+```shell
+npm link @ppwd/axios
+```
+
+#### free api
+
+* [hacker news api](https://github.com/HackerNews/API): need fq
+
 ### 代码质量
 
 * jest

@@ -220,6 +220,13 @@ axios({
 
 * [Quick start](https://rollupjs.org/guide/en/#quick-start)
 * [module field of package.json](https://stackoverflow.com/questions/42708484/what-is-the-module-package-json-field-for)
+* [output.format](https://rollupjs.org/guide/en/#outputformat)
+
+#### problem
+
+* no declaration file of types after rollup build:
+  * set tsconfig.json `declarationDir` and `declaration` field
+  * config `rollup-plugin-typescript2` plugin: `{useTsconfigDeclarationDir: true}`
 
 ### 发布
 
