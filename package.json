@@ -2,7 +2,8 @@
   "name": "@ppwd/axios",
   "version": "0.0.9",
   "description": "http request library",
-  "main": "build/axios.umd.js",
+  "main": "build/axios.cjs.js",
+  "module": "build/axios.es.js",
   "types": "build/index.d.ts",
   "scripts": {
     "pre-commit": "lint-staged",

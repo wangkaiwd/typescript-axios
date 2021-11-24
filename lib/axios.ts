@@ -10,7 +10,10 @@ function createInstance(config: AxiosRequestConfig): AxiosStatic {
   const context = new Axios(config);
   const instance = context.request.bind(context);
   // use type assert: after extend instance type is not explicit
-  return extend(instance, context) as AxiosStatic;
+  // https://stackoverflow.com/questions/30881632/es6-iterate-over-class-methods
+  extend(instance, context);
+  extend(instance, Axios.prototype);
+  return instance as AxiosStatic;
 }
 
 const axios = createInstance(defaults);
