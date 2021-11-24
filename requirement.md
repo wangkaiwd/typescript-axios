@@ -220,6 +220,8 @@ axios({
 
 * [Quick start](https://rollupjs.org/guide/en/#quick-start)
 * [module field of package.json](https://stackoverflow.com/questions/42708484/what-is-the-module-package-json-field-for)
+  * **read all information**
+  * [pkg.module](https://github.com/rollup/rollup/wiki/pkg.module)
 * [output.format](https://rollupjs.org/guide/en/#outputformat)
 
 #### problem
@@ -227,6 +229,7 @@ axios({
 * no declaration file of types after rollup build:
   * set tsconfig.json `declarationDir` and `declaration` field
   * config `rollup-plugin-typescript2` plugin: `{useTsconfigDeclarationDir: true}`
+* why vue cli use library error by require syntax but vue is successfully ?
 
 ### 发布
 
