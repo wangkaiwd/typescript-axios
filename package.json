@@ -1,6 +1,6 @@
 {
   "name": "@ppwd/axios",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "http request library",
   "main": "build/axios.cjs.js",
   "module": "build/axios.es.js",
