@@ -4,13 +4,13 @@
   "description": "http request library",
   "main": "build/axios.cjs.js",
   "module": "build/axios.es.js",
-  "types": "build/index.d.ts",
+  "types": "build/types/index.d.ts",
   "scripts": {
     "pre-commit": "lint-staged",
     "cm": "cz",
     "genlog": "node scripts/gen-change-log.js",
     "server": "nodemon website/server.js",
-    "build": "rollup -c rollup.config.js",
+    "build": "rollup -c rollup.config.ts",
     "test": "jest --coverage=false",
     "test:coverage": "jest",
     "release": "npm run build && npm version patch && npm publish"
@@ -75,6 +75,7 @@
     "ts-jest": "^27.0.7",
     "ts-loader": "^9.2.3",
     "ts-node": "^10.4.0",
+    "tslib": "^2.3.1",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",
     "webpack-dev-middleware": "^3.7.3",
