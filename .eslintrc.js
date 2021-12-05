@@ -3,12 +3,13 @@ module.exports = {
     browser: true,
     es2021: true,
     jest: true,
+    jasmine: true
   },
   extends: ["airbnb-base", "prettier"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: 12,
-    sourceType: "module",
+    sourceType: "module"
   },
   plugins: ["@typescript-eslint"],
   rules: {
@@ -23,8 +24,8 @@ module.exports = {
         mjs: "never",
         jsx: "never",
         ts: "never",
-        tsx: "never",
-      },
+        tsx: "never"
+      }
     ],
     "no-empty": ["error", { allowEmptyCatch: true }],
     "import/prefer-default-export": 0,
@@ -36,15 +37,15 @@ module.exports = {
     "no-restricted-syntax": 0,
     "no-plusplus": 0,
     "guard-for-in": 0,
-    "func-names": 0,
+    "func-names": 0
   },
   settings: {
     "import/extensions": "off",
     "import/no-unresolved": "off",
     "import/resolver": {
       node: {
-        extensions: [".js", ".ts"],
-      },
-    },
-  },
+        extensions: [".js", ".ts"]
+      }
+    }
+  }
 };

@@ -209,3 +209,7 @@ axios({
 ### Authorization
 
 * [basic authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization#basic_authentication)
+
+### materials
+
+* https://github.com/char1eschen/ts-axios
