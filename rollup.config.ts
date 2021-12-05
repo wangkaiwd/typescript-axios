@@ -1,5 +1,4 @@
-import resolve from "@rollup/plugin-node-resolve";
-import ts from "rollup-plugin-typescript2";
+import typescript from "rollup-plugin-typescript2";
 
 const pkg = require("./package.json");
 
@@ -21,5 +20,5 @@ export default {
       format: "iife"
     }
   ],
-  plugins: [resolve(), ts({ useTsconfigDeclarationDir: true })]
+  plugins: [typescript({ useTsconfigDeclarationDir: true })]
 };

@@ -15,7 +15,7 @@ describe("requests", () => {
 
     return getAjaxRequest().then((request) => {
       expect(request.url).toBe(url);
-      expect(request.method).toBe("get");
+      expect(request.method).toBe("GET");
     });
   });
 });
