@@ -19,7 +19,7 @@ then
   git add -A
   git commit -m "build: $VERSION"
   # 修改package.json中的version字段为$VERSION,并提交一条修改记录   
-  npm version $VERSION --message "[release] $VERSION"
+  npm version $VERSION --message "build: release $VERSION"
   git push
 
   # publish
