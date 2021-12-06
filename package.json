@@ -6,6 +6,7 @@
   "module": "build/axios.es.js",
   "types": "build/types/index.d.ts",
   "scripts": {
+    "prepare": "husky install",
     "pre-commit": "lint-staged",
     "cm": "cz",
     "genlog": "node scripts/gen-change-log.js",
@@ -13,7 +14,8 @@
     "build": "rollup -c rollup.config.ts",
     "test": "jest --coverage=false",
     "test:coverage": "jest",
-    "release": "npm run build && npm version patch && npm publish"
+    "prerelease": "rm -rf build && npm run build",
+    "release": "scripts/release.sh"
   },
   "repository": {
     "type": "git",
