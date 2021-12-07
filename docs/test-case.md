@@ -7,7 +7,7 @@
 
 > [vue-next jest config file](https://github.com/vuejs/vue-next/blob/master/jest.config.js)
 
-* create `__tests__` under project root project
+* create `__tests__` under project root directory
 
 #### configuration
 
