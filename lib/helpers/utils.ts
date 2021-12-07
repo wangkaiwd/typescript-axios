@@ -1,6 +1,8 @@
 // merge arbitrary objects to one
 // {a:1,b:2}, {x:1,y:2}, {a:2,x:2} => {a:2,b:2,x:2,y:2}
 
+import { PlainObject } from "../types";
+
 const toString = Object.prototype.toString;
 
 export function isPlainObject(value: any): value is object {
@@ -23,18 +25,18 @@ export function isURLSearchParams(value: any): value is URLSearchParams {
   return value instanceof URLSearchParams;
 }
 
-export function deepMerge(...objs: any[]): any {
+export function deepMerge(...args: PlainObject[]): any {
   const result: any = {};
-  objs.forEach((obj) => {
-    if (!isPlainObject(obj)) {
+  args.forEach((object) => {
+    if (!isPlainObject(object)) {
       return;
     }
-    Object.keys(obj).forEach((key) => {
-      if (isPlainObject((obj as any)[key])) {
+    Object.keys(object).forEach((key) => {
+      if (isPlainObject((object as any)[key])) {
         // recursive deep merge
-        result[key] = deepMerge(result[key], (obj as any)[key]);
+        result[key] = deepMerge(result[key], (object as any)[key]);
       } else {
-        result[key] = (obj as any)[key];
+        result[key] = (object as any)[key];
       }
     });
   });

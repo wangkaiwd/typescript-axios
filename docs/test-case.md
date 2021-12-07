@@ -3,12 +3,6 @@
 * jest
 * ts-jest
 
-### knowledge
-
-> [vue-next jest config file](https://github.com/vuejs/vue-next/blob/master/jest.config.js)
-
-* create `__tests__` under project root directory
-
 #### configuration
 
 * test file will has suffix `.spec` compare with origin source code file
@@ -23,3 +17,17 @@
 * [beforeEach](https://jestjs.io/docs/api#beforeeachfn-timeout)
 * [afterEach](https://jestjs.io/docs/api#aftereachfn-timeout)
 * [test asynchronous code](https://jestjs.io/docs/asynchronous#callbacks)
+
+Expect:
+
+* [toBe](https://jestjs.io/docs/expect#tobevalue)
+* [toEqual](https://jestjs.io/docs/expect#toequalvalue)
+* [toStrictEqual](https://jestjs.io/docs/expect#tostrictequalvalue)
+
+### knowledge
+
+> [vue-next jest config file](https://github.com/vuejs/vue-next/blob/master/jest.config.js)
+
+* create `__tests__` under project root directory
+* [npm run script](https://docs.npmjs.com/cli/v8/commands/npm-run-script)
+  * pass arguments to the specified script
