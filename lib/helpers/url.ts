@@ -1,5 +1,5 @@
 import { AxiosParamsSerializer, AxiosRequestParams } from "../types";
-import { isPlainObject, isURLSearchParams } from "../utils";
+import { isPlainObject, isURLSearchParams } from "./utils";
 
 interface URLOrigin {
   protocol: string;

@@ -1,6 +1,5 @@
-import { isFormData, isPlainObject } from "../utils";
 import { IHeaders, Methods } from "../types";
-import { deepMerge } from "./utils";
+import { deepMerge, isFormData, isPlainObject } from "./utils";
 
 function normalizeHeadersName(headers: any, normalizedName: "Content-Type") {
   if (!headers) {

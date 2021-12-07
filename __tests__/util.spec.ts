@@ -1,4 +1,9 @@
-import { isFormData, isObject, isPlainObject, isUndefined } from "../lib/utils";
+import {
+  isFormData,
+  isObject,
+  isPlainObject,
+  isUndefined,
+} from "../lib/helpers/utils";
 
 describe("isPlainObject", () => {
   it("can check plain object", () => {
