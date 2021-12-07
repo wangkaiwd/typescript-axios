@@ -15,7 +15,7 @@
     "test": "jest --coverage=false",
     "test:coverage": "jest",
     "prerelease": "rm -rf build && npm run build",
-    "release": "scripts/release.sh"
+    "release": "scripts/release.sh && npm run genlog"
   },
   "repository": {
     "type": "git",
