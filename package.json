@@ -14,8 +14,8 @@
     "build": "rollup -c rollup.config.ts",
     "test": "jest --coverage=false",
     "test:coverage": "jest",
-    "prerelease": "rm -rf build && npm run build",
-    "release": "scripts/release.sh && npm run genlog"
+    "prerelease": "rm -rf build",
+    "release": "scripts/release.sh"
   },
   "repository": {
     "type": "git",
