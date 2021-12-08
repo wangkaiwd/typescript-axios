@@ -14,12 +14,17 @@ export class AxiosError extends Error implements IAxiosError {
 
   response?: AxiosResponse;
 
+  code?: string;
+
   constructor(options: AxiosErrorOptions) {
     super(options.message);
     this.isAxiosError = true;
     this.config = options.config;
     this.request = options.request;
     this.response = options.response;
+    if (options.code) {
+      this.code = options.code;
+    }
   }
 }
 
