@@ -67,7 +67,9 @@ export function xhr(config: AxiosRequestConfig): AxiosPromise {
         request.upload.addEventListener("progress", onUploadProgress);
       }
       request.addEventListener("load", () => {
-        const responseHeaders = parseResponseHeaders(request);
+        const responseHeaders = parseResponseHeaders(
+          request.getAllResponseHeaders()
+        );
         const response = {
           status: request.status,
           statusText: request.statusText,

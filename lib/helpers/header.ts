@@ -34,13 +34,15 @@ export function processHeaders(headers: any, data: any): IHeaders {
   return headers;
 }
 
-export function parseResponseHeaders(request: XMLHttpRequest): IHeaders {
-  const responseStr = request.getAllResponseHeaders();
-  const array = responseStr.split("\r\n");
+export function parseResponseHeaders(headers: string): IHeaders {
+  const array = headers.split("\r\n");
   return array.reduce((memo: IHeaders, item) => {
     if (item) {
-      const [key, val] = item.split(": ");
-      memo[key] = val;
+      const [key, ...val] = item.split(":");
+      const normalizedKey = key.trim().toLocaleLowerCase();
+      if (normalizedKey) {
+        memo[normalizedKey] = val.join(":").trim();
+      }
     }
     return memo;
   }, {});
