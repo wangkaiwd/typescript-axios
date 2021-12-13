@@ -3,6 +3,10 @@
 * jest
 * ts-jest
 
+#### test ajax request
+
+* [jasmine-ajax](https://github.com/jasmine/jasmine-ajax)
+
 #### configuration
 
 * test file will has suffix `.spec` compare with origin source code file
