@@ -20,13 +20,17 @@
 * [test](https://jestjs.io/docs/api#testname-fn-timeout)
 * [beforeEach](https://jestjs.io/docs/api#beforeeachfn-timeout)
 * [afterEach](https://jestjs.io/docs/api#aftereachfn-timeout)
-* [test asynchronous code](https://jestjs.io/docs/asynchronous#callbacks)
 
 Expect:
 
 * [toBe](https://jestjs.io/docs/expect#tobevalue)
 * [toEqual](https://jestjs.io/docs/expect#toequalvalue)
 * [toStrictEqual](https://jestjs.io/docs/expect#tostrictequalvalue)
+
+### introduce
+
+* [test asynchronous code](https://jestjs.io/docs/asynchronous#callbacks)
+* [mock functions](https://jestjs.io/docs/mock-functions)
 
 ### knowledge
 
