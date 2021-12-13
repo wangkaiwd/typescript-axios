@@ -1,4 +1,8 @@
-import { parseResponseHeaders, processHeaders } from "../../lib/helpers/header";
+import {
+  flattenHeaders,
+  parseResponseHeaders,
+  processHeaders,
+} from "../../lib/helpers/header";
 
 describe("helper:header", () => {
   describe("parseResponseHeaders", () => {
@@ -44,6 +48,19 @@ describe("helper:header", () => {
     });
   });
   describe("flattenHeaders", () => {
-    it("should ", () => {});
+    it("should flatten headers include common headers", () => {
+      const headers = {
+        common: { "Content-Type": "application/json;charset=utf8", c: 3 },
+        get: { a: 1 },
+        b: 2,
+        c: 4,
+      };
+      expect(flattenHeaders(headers, "get")).toEqual({
+        "Content-Type": "application/json;charset=utf8",
+        a: 1,
+        b: 2,
+        c: 4,
+      });
+    });
   });
 });
