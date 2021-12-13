@@ -1,6 +1,11 @@
 import { flattenHeaders } from "../helpers/header";
 import buildUrl, { combineUrl, isAbsoluteUrl } from "../helpers/url";
-import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from "../types";
+import {
+  AxiosPromise,
+  AxiosRequestConfig,
+  AxiosResponse,
+  Methods,
+} from "../types";
 import { xhr } from "./xhr";
 import { transform } from "./transform";
 
@@ -11,6 +16,7 @@ function processConfig(config: AxiosRequestConfig): void {
   if (!isAbsoluteUrl(url) && baseURL) {
     url = combineUrl(baseURL, url);
   }
+  config.method = method?.toLowerCase() as Methods;
   config.url = buildUrl(url, params);
   // why headers not as a return value and pass next function
   config.data = transform(data, headers, config.transformRequest);
