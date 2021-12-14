@@ -47,4 +47,42 @@ describe("requests", () => {
     };
     axios({ url: "/foo" }).then(resolveSpy).catch(rejectSpy).then(next);
   });
+  it("should reject when request timeout", (done) => {
+    let err: IAxiosError;
+    axios({ url: "/foo", timeout: 2000, method: "post" }).catch((error) => {
+      err = error;
+    });
+
+    getAjaxRequest().then((request) => {
+      // @ts-ignore
+      request.eventBus.trigger("timeout");
+      setTimeout(() => {
+        expect(err instanceof Error).toBeTruthy();
+        expect(err.message).toBe("Timeout of 2000 ms exceeded");
+        done();
+      }, 100);
+    });
+  });
+  it("should reject when validateStatus return false", (done) => {
+    const resolveSpy = jest.fn((res) => res);
+    const rejectSpy = jest.fn((err) => err);
+    axios({
+      url: "/foo",
+      validateStatus(status) {
+        return status !== 500;
+      },
+    })
+      .then(resolveSpy)
+      .catch(rejectSpy)
+      .then((reason: IAxiosError) => {
+        expect(resolveSpy).not.toBeCalled();
+        expect(rejectSpy).toBeCalled();
+        expect(reason instanceof Error).toBeTruthy();
+        expect(reason.message).toBe("Request failed with status code 500");
+        done();
+      });
+  });
+  getAjaxRequest().then((request) => {
+    request.respondWith({ status: 500 });
+  });
 });

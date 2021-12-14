@@ -13,3 +13,7 @@
 ### Problem
 
 * error tip not friendly
+* git tag
+* git push --tag
+
+can switch different version source code by tag
