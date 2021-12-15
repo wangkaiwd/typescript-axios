@@ -4,6 +4,10 @@
 
 * [conventional-changelog-cli](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli)
 
+### github release
+
+* [GitHub Automatic Release](https://github.com/marketplace/actions/automatic-releases#github-automatic-releases)
+
 ### Resource
 
 * [keeping files out of your package](https://docs.npmjs.com/cli/v8/using-npm/developers#keeping-files-out-of-your-package)
