@@ -16,7 +16,7 @@
 * npm publish
   * publish beta version
   * publish scoped package
-* npm unpublish
+  * npm unpublish
 * npm pack(look published file in npm)
   * online tool
 
