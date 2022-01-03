@@ -1,9 +1,10 @@
-## [0.0.13](https://github.com/wangkaiwd/typescript-axios/compare/v0.0.11...v0.0.13) (2021-12-07)
+## [0.0.14](https://github.com/wangkaiwd/typescript-axios/compare/v0.0.11...v0.0.14) (2021-12-07)
 
 
 ### Features
 
 * arrange operate step of rollup build typescript library ([4dabce1](https://github.com/wangkaiwd/typescript-axios/commit/4dabce12f6e470e2c5e1f1d6376dd629b39efdf2))
+* commit change log ([cb74b0d](https://github.com/wangkaiwd/typescript-axios/commit/cb74b0dc98ec43c277197103af08b64685e7f48d))
 * mock XMLHttpRequest successfully ([e976771](https://github.com/wangkaiwd/typescript-axios/commit/e97677152e1510405067a932afb2507ba91607b7))
 * optimize typescript build flow ([b5342d2](https://github.com/wangkaiwd/typescript-axios/commit/b5342d29ef7c7529aeed58a944599c202c188316))
 * supply document for library ([d1b0efa](https://github.com/wangkaiwd/typescript-axios/commit/d1b0efa29d08df270ac985408405e5e0c896214d))

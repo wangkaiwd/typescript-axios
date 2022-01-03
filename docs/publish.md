@@ -9,6 +9,7 @@
 * [GitHub Automatic Release](https://github.com/marketplace/actions/automatic-releases#github-automatic-releases)
 
 ### Resource
+
 * [private](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#private)
 * [keeping files out of your package](https://docs.npmjs.com/cli/v8/using-npm/developers#keeping-files-out-of-your-package)
 * [npm version](https://docs.npmjs.com/cli/v8/commands/npm-version)
@@ -21,3 +22,13 @@
 * git push --tag
 
 can switch different version source code by tag
+
+### publish steps
+
+1. build source code
+2. npm run version
+3. generate changelog(**it would take advantage of new version in package.json**)
+4. commit changes of `package.json`,`package-lock.json` and `changelog.md`
+5. git push
+6. git push <tag>
+7. npm publish
