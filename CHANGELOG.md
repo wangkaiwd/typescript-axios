@@ -1,3 +1,45 @@
+## [0.0.17](https://github.com/wangkaiwd/typescript-axios/compare/v0.0.16...v0.0.17) (2022-01-03)
+
+
+### Features
+
+* log in release ([26dc3b2](https://github.com/wangkaiwd/typescript-axios/commit/26dc3b2b5ce9c6d9d973a9a6765903eb7b4ee7ef))
+
+
+
+## [0.0.16](https://github.com/wangkaiwd/typescript-axios/compare/v0.0.15...v0.0.16) (2022-01-03)
+
+
+### Features
+
+* add GitHub action ([7da3cdf](https://github.com/wangkaiwd/typescript-axios/commit/7da3cdfc99049e624614feb8d51b4e59ae2e3f44))
+
+
+
+## [0.0.15](https://github.com/wangkaiwd/typescript-axios/compare/v0.0.14...v0.0.15) (2022-01-03)
+
+
+### Features
+
+* .npmignore and file field ([dfa6a6a](https://github.com/wangkaiwd/typescript-axios/commit/dfa6a6af8da3f03a9057a6c3f26c129a2d542ccc))
+* add release github action ([94fc3e1](https://github.com/wangkaiwd/typescript-axios/commit/94fc3e1677d843bdc67d7655dcfe93274ca8fc29))
+* complete test error file ([e834895](https://github.com/wangkaiwd/typescript-axios/commit/e83489521b632ab8c5fa06d4a8d27b6151c49a24))
+* complete test header.ts ([eefe230](https://github.com/wangkaiwd/typescript-axios/commit/eefe230bc047b488b5ca3f36e0844fe4fa02173d))
+* continue http request test ([71667a1](https://github.com/wangkaiwd/typescript-axios/commit/71667a1db1a6a062241798263c6cee4d619be0bc))
+* continue test request.spec.ts ([fab100a](https://github.com/wangkaiwd/typescript-axios/commit/fab100a069032e22088b8a8fe8c7c7c2e906a438))
+* generate changelog file ([c4146b6](https://github.com/wangkaiwd/typescript-axios/commit/c4146b6ba326ed2b53eb843cf2c03f61268dd1cf))
+* mock functions of jest ([d824d1c](https://github.com/wangkaiwd/typescript-axios/commit/d824d1cd3afb6ccb2053cc551e3e7202822f0737))
+* supply GitHub release document ([dca7fb2](https://github.com/wangkaiwd/typescript-axios/commit/dca7fb2f08f21720f4a175b8becd30751a6f1218))
+* supply knowledge for test case md file ([dbded77](https://github.com/wangkaiwd/typescript-axios/commit/dbded770eb75601341eeab4d3b8d6503f176efe8))
+* test deep merge function ([7703d96](https://github.com/wangkaiwd/typescript-axios/commit/7703d961646d410cbfce2664785047af069715ce))
+* test extend file ([af241a4](https://github.com/wangkaiwd/typescript-axios/commit/af241a4a3362a135a7936eedbde3e9409d2aff77))
+* test some method of header.ts ([b95b7c2](https://github.com/wangkaiwd/typescript-axios/commit/b95b7c201a528471048770a98c1d3a1894847b80))
+* update dependencies package ([48773a1](https://github.com/wangkaiwd/typescript-axios/commit/48773a1ce46ab548361cdda6af431476ed38c773))
+* update publish document ([624fb6f](https://github.com/wangkaiwd/typescript-axios/commit/624fb6fbfe0e3c1a97c5ba7e3ca8342a04edc062))
+* update to correct version ([9fb0f04](https://github.com/wangkaiwd/typescript-axios/commit/9fb0f043a7d846e6dae446366cf3184958520ff3))
+
+
+
 ## [0.0.14](https://github.com/wangkaiwd/typescript-axios/compare/v0.0.11...v0.0.14) (2021-12-07)
 
 
