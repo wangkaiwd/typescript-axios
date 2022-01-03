@@ -36,5 +36,7 @@ can switch different version source code by tag
 3. generate changelog(**it would take advantage of new version in package.json**)
 4. commit changes of `package.json`,`package-lock.json` and `changelog.md`
 5. git push
-6. git push <tag>
-7. npm publish
+6. git push origin <tag>
+7. npm publish --reg https://registry.npmjs.org
+   * [publishConfig](https://docs.npmjs.com/cli/v8/configuring-npm/package-json#publishconfig)
+8. generate github release
