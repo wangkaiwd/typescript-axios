@@ -8,6 +8,7 @@
 
 * support typescript
 * generate different format bundle
+* [api extractor](https://api-extractor.com/pages/configs/api-extractor_json/#dts-rollup-section)
 
 #### Install
 
