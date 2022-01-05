@@ -49,41 +49,41 @@ const doRelease = async (newVersion) => {
   console.log(chalk.green('\nRelease successfully!'));
 };
 const main = async () => {
-  // const answer = await enquirer.prompt(
-  //   {
-  //     type: 'select',
-  //     name: 'version',
-  //     message: 'Select release type',
-  //     choices: incrementVersions.map(type => {
-  //       const versionNumber = inc(type);
-  //       return { message: `${type} ${versionNumber}`, name: inc(type) };
-  //     }).concat('custom')
-  //   });
-  // let newVersion = answer.version;
-  // if (newVersion === 'custom') {
-  //   const { custom } = await enquirer.prompt({
-  //     type: 'input',
-  //     name: 'custom',
-  //     message: 'Please input new version',
-  //     initial: currentVersion,
-  //     validate (value) {
-  //       if (semver.valid(value)) {
-  //         return true;
-  //       } else {
-  //         return 'Please input a valid package version';
-  //       }
-  //     }
-  //   });
-  //   newVersion = custom;
-  // }
-  // const { goOn } = await enquirer.prompt({
-  //   type: 'confirm',
-  //   name: 'goOn',
-  //   message: `Release v${newVersion}. Confirm ?`
-  // });
-  // if (goOn) {
-  //   await doRelease(newVersion);
-  // }
+  const answer = await enquirer.prompt(
+    {
+      type: 'select',
+      name: 'version',
+      message: 'Select release type',
+      choices: incrementVersions.map(type => {
+        const versionNumber = inc(type);
+        return { message: `${type} ${versionNumber}`, name: inc(type) };
+      }).concat('custom')
+    });
+  let newVersion = answer.version;
+  if (newVersion === 'custom') {
+    const { custom } = await enquirer.prompt({
+      type: 'input',
+      name: 'custom',
+      message: 'Please input new version',
+      initial: currentVersion,
+      validate (value) {
+        if (semver.valid(value)) {
+          return true;
+        } else {
+          return 'Please input a valid package version';
+        }
+      }
+    });
+    newVersion = custom;
+  }
+  const { goOn } = await enquirer.prompt({
+    type: 'confirm',
+    name: 'goOn',
+    message: `Release v${newVersion}. Confirm ?`
+  });
+  if (goOn) {
+    await doRelease(newVersion);
+  }
 };
 main().catch((err) => {
   console.log('error', err);
