@@ -6,7 +6,14 @@ const step = (msg) => console.log(chalk.cyan(msg));
 const pkg = require('../package.json');
 const execa = require('execa');
 const currentVersion = pkg.version;
-const incrementVersions = ['patch', 'minor', 'major'];
+const preId = semver.prerelease(currentVersion) && semver.prerelease(currentVersion)[0];
+const incrementVersions = [
+  'patch',
+  'minor',
+  'major',
+  // https://stackoverflow.com/questions/44908159/how-to-define-an-array-with-conditional-elements
+  ...preId ? ['prepatch', 'preminor', 'premajor', 'prerelease'] : []
+];
 const dryRun = args.dryRun;
 const npmRegistry = 'https://registry.npmjs.org';
 const run = (cmd, args, options) => {
@@ -14,9 +21,9 @@ const run = (cmd, args, options) => {
 };
 
 const ifDryRun = (cmd, args, options) => dryRun ? console.log(cmd + ' ' + args.join(' ')) : run(cmd, args, options);
-const inc = (i) => semver.inc(currentVersion, i);
+const inc = (i) => semver.inc(currentVersion, i, preId);
 
-const doBuild = async (newVersion) => {
+const doRelease = async (newVersion) => {
   step('\nBuild package...');
   await ifDryRun('npm', ['run', 'build']);
 
@@ -73,7 +80,7 @@ const main = async () => {
     message: `Release v${newVersion}. Confirm ?`
   });
   if (goOn) {
-    await doBuild(newVersion);
+    await doRelease(newVersion);
   }
 };
 
