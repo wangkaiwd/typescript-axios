@@ -59,22 +59,23 @@ const build = async () => {
   await ifDryRun('npm', ['run', 'build']);
   await rollupTypes();
 };
-const doRelease = async (newVersion) => {
+const doRelease = async (version) => {
   step('\nBuild package...');
   await build();
   step('\nBump version...');
-  await ifDryRun(`npm`, ['version', newVersion, '-m', `chore(version): bump version to v${newVersion}`]);
+  await ifDryRun(`npm`, ['version', version, '-m', `chore(version): bump version to v${version}`]);
 
   step('\nGenerate changelog...');
   await ifDryRun('npm', ['run', 'genlog']);
-  await commitChanges(newVersion);
+  await commitChanges(version);
   step('\nPublish package to npm...');
   await ifDryRun('npm', ['publish', '--reg', npmRegistry]);
 
   step('\nPush to github...');
   await ifDryRun('git', ['push']);
-  await ifDryRun(`git`, ['push', 'origin', `v${newVersion}`]);
-  console.log(chalk.green('\nRelease successfully!'));
+  await ifDryRun(`git`, ['push', 'origin', `v${version}`]);
+  console.log(chalk.green(`
+  Release successfully ${pkg.name}@${version}`));
 };
 const main = async () => {
   const answer = await enquirer.prompt(

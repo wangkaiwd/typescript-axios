@@ -1,3 +1,44 @@
+## [0.0.21](https://github.com/wangkaiwd/typescript-axios/compare/v0.0.20...v0.0.21) (2022-01-05)
+
+
+
+## [0.0.20](https://github.com/wangkaiwd/typescript-axios/compare/v0.0.19...v0.0.20) (2022-01-05)
+
+
+### Features
+
+* remove bundle before build ([dd87236](https://github.com/wangkaiwd/typescript-axios/commit/dd87236958a6e41588ee21f7494bee79186999ee))
+
+
+
+## [0.0.19](https://github.com/wangkaiwd/typescript-axios/compare/v0.0.18...v0.0.19) (2022-01-05)
+
+
+### Features
+
+* handle prerelease tag ([def84bb](https://github.com/wangkaiwd/typescript-axios/commit/def84bb0f05857bb6ea10dbb6e835ed49a1889a5))
+* preliminary complete release script ([af6c10f](https://github.com/wangkaiwd/typescript-axios/commit/af6c10f4f8617d1e933ba3a1e30143672705d7f6))
+* record publish workflow ([2a45c9f](https://github.com/wangkaiwd/typescript-axios/commit/2a45c9fe3d83abbc8a09b731d257948ddb7f9fc4))
+* remove comments ([cf2668b](https://github.com/wangkaiwd/typescript-axios/commit/cf2668b86df46b2a64182781ea3c5bc894a07ffd))
+* roll up .d.ts file ([c2fc963](https://github.com/wangkaiwd/typescript-axios/commit/c2fc963c9f805892df7d7c7c2c1b6014ed4c0543))
+* run git diff check wether have changed code ([efdf99a](https://github.com/wangkaiwd/typescript-axios/commit/efdf99a67b291450cc9cf20e672d07a7a41ab524))
+
+
+
+## [0.0.18](https://github.com/wangkaiwd/typescript-axios/compare/v0.0.17...v0.0.18) (2022-01-03)
+
+
+### Bug Fixes
+
+* update release action ([75b6afb](https://github.com/wangkaiwd/typescript-axios/commit/75b6afbfd90541af11a8577c62754fdb1f1fd852))
+
+
+### Features
+
+* update changelog ([2528171](https://github.com/wangkaiwd/typescript-axios/commit/2528171a78cace3ddfde033a934e550eae35ecf8))
+
+
+
 ## [0.0.17](https://github.com/wangkaiwd/typescript-axios/compare/v0.0.16...v0.0.17) (2022-01-03)
 
 
