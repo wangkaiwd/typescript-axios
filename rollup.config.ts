@@ -8,17 +8,17 @@ export default {
     {
       file: pkg.main,
       exports: "auto",
-      format: "cjs"
+      format: "cjs",
     },
     {
       file: pkg.module,
-      format: "es"
+      format: "es",
     },
     {
-      file: "build/axios.browser.js",
-      name: "axios",
-      format: "iife"
-    }
+      file: "build/axios.global.js",
+      name: "Axios",
+      format: "iife",
+    },
   ],
-  plugins: [typescript({ useTsconfigDeclarationDir: true })]
+  plugins: [typescript({ useTsconfigDeclarationDir: true })],
 };

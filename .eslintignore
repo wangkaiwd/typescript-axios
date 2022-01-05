@@ -1,6 +1,7 @@
-scripts/**
+scripts/**/*
 dist
 build
 tsconfig.json
 package.json
 package-lock.json
+api-extractor.json
