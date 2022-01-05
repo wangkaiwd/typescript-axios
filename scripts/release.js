@@ -22,7 +22,14 @@ const run = (cmd, args, options) => {
 
 const ifDryRun = (cmd, args, options) => dryRun ? console.log(cmd + ' ' + args.join(' ')) : run(cmd, args, options);
 const inc = (i) => semver.inc(currentVersion, i, preId);
-
+const commitChanges = async (version) => {
+  const { stdout } = await ifDryRun('git', ['diff'], { stdio: 'pipe' });
+  if (stdout) {
+    step('\nCommit changes...');
+    await ifDryRun('git', ['add', '.']);
+    await ifDryRun(`git`, ['commit', '-m', `chore(release): release v${version}`]);
+  }
+};
 const doRelease = async (newVersion) => {
   step('\nBuild package...');
   await ifDryRun('npm', ['run', 'build']);
@@ -32,60 +39,52 @@ const doRelease = async (newVersion) => {
 
   step('\nGenerate changelog...');
   await ifDryRun('npm', ['run', 'genlog']);
-
-  step('\nCommit changes...');
-  await ifDryRun('git', ['add', '.']);
-  await ifDryRun(`git`, ['commit', '-m', `chore(release): release v${newVersion}`]);
-
+  await commitChanges(newVersion);
   step('\nPublish package to npm...');
   await ifDryRun('npm', ['publish', '--reg', npmRegistry]);
 
   step('\nPush to github...');
   await ifDryRun('git', ['push']);
   await ifDryRun(`git`, ['push', 'origin', `v${newVersion}`]);
-
-  step('\nRelease successfully');
+  console.log(chalk.green('\nRelease successfully!'));
 };
 const main = async () => {
-  const answer = await enquirer.prompt(
-    {
-      type: 'select',
-      name: 'version',
-      message: 'Select release type',
-      choices: incrementVersions.map(type => {
-        const versionNumber = inc(type);
-        return { message: `${type} ${versionNumber}`, name: inc(type) };
-      }).concat('custom')
-    });
-  let newVersion = answer.version;
-  if (newVersion === 'custom') {
-    const { custom } = await enquirer.prompt({
-      type: 'input',
-      name: 'custom',
-      message: 'Please input new version',
-      initial: currentVersion,
-      validate (value) {
-        if (semver.valid(value)) {
-          return true;
-        } else {
-          return 'Please input a valid package version';
-        }
-      }
-    });
-    newVersion = custom;
-  }
-  const { goOn } = await enquirer.prompt({
-    type: 'confirm',
-    name: 'goOn',
-    message: `Release v${newVersion}. Confirm ?`
-  });
-  if (goOn) {
-    await doRelease(newVersion);
-  }
+  // const answer = await enquirer.prompt(
+  //   {
+  //     type: 'select',
+  //     name: 'version',
+  //     message: 'Select release type',
+  //     choices: incrementVersions.map(type => {
+  //       const versionNumber = inc(type);
+  //       return { message: `${type} ${versionNumber}`, name: inc(type) };
+  //     }).concat('custom')
+  //   });
+  // let newVersion = answer.version;
+  // if (newVersion === 'custom') {
+  //   const { custom } = await enquirer.prompt({
+  //     type: 'input',
+  //     name: 'custom',
+  //     message: 'Please input new version',
+  //     initial: currentVersion,
+  //     validate (value) {
+  //       if (semver.valid(value)) {
+  //         return true;
+  //       } else {
+  //         return 'Please input a valid package version';
+  //       }
+  //     }
+  //   });
+  //   newVersion = custom;
+  // }
+  // const { goOn } = await enquirer.prompt({
+  //   type: 'confirm',
+  //   name: 'goOn',
+  //   message: `Release v${newVersion}. Confirm ?`
+  // });
+  // if (goOn) {
+  //   await doRelease(newVersion);
+  // }
 };
-
-main().then(() => {
-
-}).catch((err) => {
+main().catch((err) => {
   console.log('error', err);
 });
