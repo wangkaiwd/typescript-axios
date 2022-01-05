@@ -56,10 +56,12 @@ const rollupTypes = async () => {
 };
 const build = async () => {
   await fs.rm(resolve('build'), { force: true, recursive: true });
-  return ifDryRun('npm', ['run', 'build']);
+  await ifDryRun('npm', ['run', 'build']);
+  await rollupTypes();
 };
 const doRelease = async (newVersion) => {
-  step('\nBuild package...');await ifDryRun('npm', ['run', 'build']);
+  step('\nBuild package...');
+  await ifDryRun('npm', ['run', 'build']);
   await build();
   step('\nBump version...');
   await ifDryRun(`npm`, ['version', newVersion, '-m', `chore(version): bump version to v${newVersion}`]);
