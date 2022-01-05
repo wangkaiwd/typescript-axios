@@ -3,8 +3,15 @@ const args = require('minimist')(process.argv.slice(2));
 const chalk = require('chalk');
 const semver = require('semver');
 const step = (msg) => console.log(chalk.cyan(msg));
-const pkg = require('../package.json');
 const execa = require('execa');
+const {
+  Extractor,
+  ExtractorConfig,
+  ExtractorResult
+} = require('@microsoft/api-extractor');
+const pkg = require('../package.json');
+const path = require('path');
+const fs = require('fs/promises');
 const currentVersion = pkg.version;
 const preId = semver.prerelease(currentVersion) && semver.prerelease(currentVersion)[0];
 const incrementVersions = [
@@ -14,6 +21,7 @@ const incrementVersions = [
   // https://stackoverflow.com/questions/44908159/how-to-define-an-array-with-conditional-elements
   ...preId ? ['prepatch', 'preminor', 'premajor', 'prerelease'] : []
 ];
+const resolve = (...args) => path.resolve(__dirname, '../', ...args);
 const dryRun = args.dryRun;
 const npmRegistry = 'https://registry.npmjs.org';
 const run = (cmd, args, options) => {
@@ -30,10 +38,29 @@ const commitChanges = async (version) => {
     await ifDryRun(`git`, ['commit', '-m', `chore(release): release v${version}`]);
   }
 };
+const rollupTypes = async () => {
+  const extractorConfig = ExtractorConfig.loadFileAndPrepare(resolve('api-extractor.json'));
+  // Invoke API Extractor
+  const extractorResult = Extractor.invoke(extractorConfig, {
+    localBuild: true,
+    showVerboseMessages: true
+  });
+  if (extractorResult.succeeded) {
+    console.log(`API Extractor completed successfully`);
+    await fs.rm(resolve('build/types'), { force: true, recursive: true });
+  } else {
+    console.error(`API Extractor completed with ${extractorResult.errorCount} errors`
+      + ` and ${extractorResult.warningCount} warnings`);
+    process.exitCode = 1;
+  }
+};
+const build = async () => {
+  await fs.rm(resolve('build'), { force: true, recursive: true });
+  return ifDryRun('npm', ['run', 'build']);
+};
 const doRelease = async (newVersion) => {
-  step('\nBuild package...');
-  await ifDryRun('npm', ['run', 'build']);
-
+  step('\nBuild package...');await ifDryRun('npm', ['run', 'build']);
+  await build();
   step('\nBump version...');
   await ifDryRun(`npm`, ['version', newVersion, '-m', `chore(version): bump version to v${newVersion}`]);
 
