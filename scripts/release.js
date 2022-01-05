@@ -61,7 +61,6 @@ const build = async () => {
 };
 const doRelease = async (newVersion) => {
   step('\nBuild package...');
-  await ifDryRun('npm', ['run', 'build']);
   await build();
   step('\nBump version...');
   await ifDryRun(`npm`, ['version', newVersion, '-m', `chore(version): bump version to v${newVersion}`]);
