@@ -13,6 +13,8 @@
     "build": "rollup -c rollup.config.ts",
     "test": "jest --coverage=false",
     "test:coverage": "jest",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
     "release": "node scripts/release.js"
   },
   "repository": {
@@ -81,6 +83,7 @@
     "ts-node": "^10.4.0",
     "tslib": "^2.3.1",
     "typescript": "^4.2.4",
+    "vitepress": "^0.21.4",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",
     "webpack-dev-middleware": "^3.7.3",
