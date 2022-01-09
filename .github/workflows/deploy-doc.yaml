@@ -23,10 +23,10 @@ jobs:
       - name: Init new repo in dist folder and commit generated files
         run: |
           cd docs/.vitepress/dist
-          git config --global user.email "1162486176@qq.com"
-          git config --global user.name "wangkaiwd"
+          git config user.email "1162486176@qq.com"
+          git config user.name "wangkaiwd"
           git init
-          git add -A
+          git add .
           git commit -m 'chore(docs): update docs'
-          git push -f https://github.com/wangkaiwd/typescript-axios.git master:gh-pages
+          git push -f git@github.com:wangkaiwd/typescript-axios.git master:gh-pages
           cd -
