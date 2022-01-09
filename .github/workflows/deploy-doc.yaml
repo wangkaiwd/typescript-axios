@@ -2,16 +2,15 @@ name: Deploy to GitHub pages
 on:
   push:
     branches: [ main, master ]
+    paths:
+      - 'docs/**'
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-      - uses: marceloprado/has-changed-path@v1
-        id: changed-docs
-        with:
-          paths: docs
+
       - name: Generate static docs files
         uses: actions/setup-node@v2
         with:
