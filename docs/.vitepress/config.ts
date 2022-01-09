@@ -3,6 +3,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "TypeScript Axios",
   description: "Study axios and typescript knowledge",
+  base: "/typescript-axios/",
   themeConfig: {
     // Type is `DefaultTheme.Config`
     nav: [
