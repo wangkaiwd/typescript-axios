@@ -29,5 +29,5 @@ jobs:
           git init
           git add .
           git commit -m 'chore(docs): update docs'
-          git push -f https://github.com:${{secrets.GITHUB_TOKEN}}/typescript-axios.git master:gh-pages
+          git push -f https://github.com/typescript-axios.git master:gh-pages
           cd -
