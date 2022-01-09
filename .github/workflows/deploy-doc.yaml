@@ -12,14 +12,12 @@ jobs:
         node: [ '14', '16' ]
     steps:
       - uses: actions/checkout@v2
-        with:
-          ssh-key: ${{ secrets.BOT_SSH_KEY }}
-      - name: Generate static docs files
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node }}
-      - run: npm install
-      - run: npm run docs:build
+#      - name: Generate static docs files
+#        uses: actions/setup-node@v2
+#        with:
+#          node-version: ${{ matrix.node }}
+#      - run: npm install
+#      - run: npm run docs:build
 
       - name: Init new repo in dist folder and commit generated files
         run: |
@@ -29,5 +27,5 @@ jobs:
           git init
           git add .
           git commit -m 'chore(docs): update docs'
-          git push -f https://github.com/typescript-axios.git master:gh-pages
+          git push -f https://github.com:wangkaiwd/typescript-axios.git master:gh-pages
           cd -
